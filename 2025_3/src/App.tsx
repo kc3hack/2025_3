@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import TestPage from './pages/test-page'
+import DesignPage from './pages/design-test'
 import './App.css'
 
 function App() {
@@ -7,7 +7,7 @@ function App() {
 
   return (
     <>
-<TestPage />     
+< DesignPage />     
     </>
   )
 }
