@@ -1,0 +1,19 @@
+import { UserData } from "./dataType";
+function createUserData(
+    id: number,
+    name: string="noName",
+    sand: number = 0,
+    elevation: number = 0,
+    facility: number[] = [],
+    tool_level: number = 1
+): UserData {
+    return {
+        id,
+        name,
+        sand,
+        elevation,
+        facility,
+        tool_level
+    };
+}
+export { createUserData };
