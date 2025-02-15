@@ -7,8 +7,9 @@
 .testDiv{
     position: absolute;
     background-color: #f1f1f1;
-    border: 1px solid black;
+    border: 1px solid rgb(0, 0, 0);
     border-radius: 10px;
+color: rgb(0, 0, 0);
     padding: 10px;
     box-shadow: 5px 5px 5px #888888;
 }
