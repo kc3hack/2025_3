@@ -1,15 +1,13 @@
-import { useState } from 'react'
-import TestPage from './pages/test-page'
-import './App.css'
+import TestPage from "./pages/test-page";
+import GamePage from "./pages/GamePage";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-<TestPage />     
+      <TestPage />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
