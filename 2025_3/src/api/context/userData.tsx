@@ -1,14 +1,19 @@
 import initialData from "./initialData.json";
 import { UserData } from "../dataType";
 import { createUserData } from "../genUserData";
-import { createContext, useState, useEffect,ReactNode } from "react";
+import { createContext, useState, useEffect, ReactNode } from "react";
 
 // UserDataContextの作成
-const UserDataContext = createContext<UserData | null>(null);
+const UserDataContext = createContext<{
+    userData: UserData | null;
+    setUserData: React.Dispatch<React.SetStateAction<UserData | null>>;
+} | null>(null);
+
 interface UserDataProviderProps {
     children: ReactNode;
 }
-const UserDataProvider: React.FC<UserDataProviderProps> = ({ children })  => {
+
+const UserDataProvider: React.FC<UserDataProviderProps> = ({ children }) => {
     const [userData, setUserData] = useState<UserData | null>(null);
 
     useEffect(() => {
@@ -32,7 +37,7 @@ const UserDataProvider: React.FC<UserDataProviderProps> = ({ children })  => {
     }, []);
 
     return (
-        <UserDataContext.Provider value={userData}>
+        <UserDataContext.Provider value={{ userData, setUserData }}>
             {children}
         </UserDataContext.Provider>
     );
