@@ -3,14 +3,22 @@
 import Facilities from "../components/Facilities";
 import "../css_designs/test-page.css";
 import { useState } from "react";
-import facilities from "../stores/facilities";
+import initialFacilities from "../stores/facilities";
+
+type Facility = {
+  name: string;
+  img_path: string;
+  efficiency: number;
+  cost: number;
+  magnification: number;
+  isLocked: boolean;
+  level: number;
+  stock: number;
+};
 
 function TestPage() {
   const [money, setMoney] = useState(10_000_000);
-
-  const [levels, setLevels] = useState<number[]>(
-    Array(facilities.length).fill(0)
-  );
+  const [facilities, setFacilities] = useState<Facility[]>(initialFacilities);
 
   return (
     <div className="test-page">
@@ -36,8 +44,8 @@ function TestPage() {
         <Facilities
           money={money}
           setMoney={setMoney}
-          facilitylevels={levels}
-          setLevels={setLevels}
+          facilities={facilities}
+          setFacilities={setFacilities}
         />
       </div>
     </div>

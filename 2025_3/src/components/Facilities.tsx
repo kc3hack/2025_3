@@ -6,40 +6,48 @@ import {
   ListItemAvatar,
   ListItemButton,
 } from "@mui/material";
-import "../css_designs/Facilities.css";
-import facilities from "../stores/facilities";
+import "../css_designs/facilities.css";
+
+export type Facility = {
+  name: string;
+  img_path: string;
+  efficiency: number;
+  cost: number;
+  magnification: number;
+  isLocked: boolean;
+  level: number;
+  stock: number;
+};
+
 
 type Props = {
   money: number;
   setMoney: React.Dispatch<React.SetStateAction<number>>;
-  facilitylevels: number[];
-  setLevels: React.Dispatch<React.SetStateAction<number[]>>;
+  facilities: Facility[];
+  setFacilities: React.Dispatch<React.SetStateAction<Facility[]>>;
 };
 
-function Facilities({
-  money,
-  setMoney,
-  facilitylevels: levels,
-  setLevels,
-}: Props) {
+function Facilities({ money, setMoney, facilities, setFacilities }: Props) {
   function onFacilityClick(idx: number) {
-    setMoney(
-      money -
-        facilities[idx].cost * facilities[idx].magnification ** levels[idx]
+    // 所持金を減らす
+    setMoney(money - facilities[idx].cost);
+
+    // 施設のレベル、コストを上げる
+    const newFacilities = facilities.slice();
+    newFacilities[idx].level++;
+    newFacilities[idx].cost = Math.round(
+      facilities[idx].cost * facilities[idx].magnification
     );
-    const newLevels = levels.slice();
-    newLevels[idx]++;
-    setLevels(newLevels);
+    setFacilities(newFacilities);
   }
 
   const facilityItems = facilities.map((facility, idx) => {
-    const cost = facility.cost * facility.magnification ** levels[idx];
     return (
       <ListItem className="facility-item" key={idx}>
         <ListItemButton
           className="facility-button"
           onClick={() => onFacilityClick(idx)}
-          disabled={facility.isLocked || money < cost}
+          disabled={facility.isLocked || money < facilities[idx].cost}
         >
           <div className="facility-info">
             <ListItemAvatar
@@ -50,7 +58,7 @@ function Facilities({
               <img
                 className="facility-avatar"
                 src={facility.img_path}
-                alt="facility image"
+                alt={`${facility.name}の画像`}
               />
             </ListItemAvatar>
             {facility.isLocked ? (
@@ -59,12 +67,12 @@ function Facilities({
               <>
                 {facility.name}
                 <br />
-                {"¥" + cost.toLocaleString()}
+                {"¥" + facilities[idx].cost.toLocaleString()}
               </>
             )}
           </div>
           {!facility.isLocked && (
-            <div className="facility-level">Lv.{levels[idx]}</div>
+            <div className="facility-level">Lv.{facilities[idx].level}</div>
           )}
         </ListItemButton>
       </ListItem>
