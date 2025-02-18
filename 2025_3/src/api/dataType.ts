@@ -20,6 +20,7 @@ interface Facility {
     efficiency: number, // 単位時間あたりの取得金額
     cost: number        // 値段
     magnification: number, // 倍率
+    stock: number,      //収益のストック
     isLocekd: boolean,   // ロックされているかどうか
 }
 
