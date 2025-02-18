@@ -4,6 +4,6 @@
     "sand": 0, 
     "elevation": 0, 
     "money": 0,
-    "facility": [], 
+    "facility": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
     "tool_level": 1 
 }

@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { UserDataContext } from './userData';
-import { UserData } from '../dataType';
+import { FacilityContext } from './facility';
+import { UserData,Facility } from '../dataType';
 
 // ユーザーデータを取得するカスタムフック
 export const useUserData = () => {
@@ -10,6 +11,14 @@ export const useUserData = () => {
     }
     return context;
 };
+
+export const useFacilityData = () => {
+    const context = useContext(FacilityContext);
+    if (!context) {
+        throw new Error("useFacilityData must be used within a FacilityProvider");
+    }
+    return context;
+}
 
 //道具のlevelの値の分だけ土砂の量を増やす関数
 export const useAddSand = () => {
@@ -55,3 +64,31 @@ export const useTool_levelup = () => {
         }
     };
 }
+
+// 施設の購入を行える関数（配列の一部値を増減させる関数）
+export const useBuyFacility = (index: number) => {
+    const { userData, setUserData } = useUserData();
+    const facilityContext = useContext(FacilityContext);
+    if (!facilityContext) {
+        throw new Error("useBuyFacility must be used within a FacilityProvider");
+    }
+    const { facility } = facilityContext;
+    return (): void => {
+        if (userData) {
+            const fee = facility[index].cost;//この辺用改変
+            if (userData.money < fee) {
+                alert("お金が足りません");
+                return;
+            }
+            const updatedFacility = [...userData.facility];
+            updatedFacility[index] += 1;
+            const updatedUserData = {
+                ...userData,
+                money: userData.money - fee,
+                facility: updatedFacility,
+            };
+            setUserData(updatedUserData);
+            localStorage.setItem('userData', JSON.stringify(updatedUserData));
+        }
+    };
+};
