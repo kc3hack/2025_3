@@ -28,6 +28,7 @@ const UserDataProvider: React.FC<UserDataProviderProps> = ({ children }) => {
                 initialData.name,
                 initialData.sand,
                 initialData.elevation,
+                initialData.money,
                 initialData.facility,
                 initialData.tool_level
             );

@@ -4,6 +4,7 @@ function createUserData(
     name: string="noName",
     sand: number = 0,
     elevation: number = 0,
+    money: number = 0,
     facility: number[] = [],
     tool_level: number = 1
 ): UserData {
@@ -12,6 +13,7 @@ function createUserData(
         name,
         sand,
         elevation,
+        money,
         facility,
         tool_level
     };

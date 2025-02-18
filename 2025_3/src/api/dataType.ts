@@ -3,6 +3,7 @@ interface UserData {
     name: string;// ユーザー名
     sand: number;// 砂の量
     elevation: number;// 標高
+    money: number;// お金
     facility: number[];// 施設の解放状況
     tool_level: number;// 道具のレベル
 }

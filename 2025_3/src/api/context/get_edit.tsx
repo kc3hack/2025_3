@@ -32,6 +32,11 @@ export const useElevation = (): number | null => {
     return userData ? userData.elevation : null;
 };
 
+export const useMoney = (): number | null => {
+    const { userData } = useUserData();
+    return userData ? userData.money : null;
+}
+
 export const useFacility = (): number[] | null => {
     const { userData } = useUserData();
     return userData ? userData.facility : null;
@@ -85,6 +90,18 @@ export const useEditElevation = () => {
     return (newElevation: number): void => {
         if (userData) {
             const updatedUserData = { ...userData, elevation: newElevation };
+            setUserData(updatedUserData);
+            localStorage.setItem('userData', JSON.stringify(updatedUserData));
+        }
+    };
+};
+
+// お金を編集するカスタムフック
+export const useEditMoney = () => {
+    const { userData, setUserData } = useUserData();
+    return (newMoney: number): void => {
+        if (userData) {
+            const updatedUserData = { ...userData, money: newMoney };
             setUserData(updatedUserData);
             localStorage.setItem('userData', JSON.stringify(updatedUserData));
         }
