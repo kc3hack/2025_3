@@ -18,7 +18,7 @@ function TestPage() {
   for (let i = 0; i < 10; i++) {
     facilities.push({
       name: "施設" + i,
-      img_path: "/landmark_oosakajou.png",
+      img_path: "../../img/facilities/landmark_oosakajou.png",
       efficiency: 1.0,
       cost: 1000000 * (i + 1),
       magnification: 2.0,
