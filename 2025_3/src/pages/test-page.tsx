@@ -4,7 +4,7 @@ import { UserDataContext } from "../api/context/userData";
 import { FacilityContext } from "../api/context/facility";
 import { useContext } from "react";
 import { useUserId, useSand, useEditSand, useMoney,useEditMoney } from "../api/context/get_edit";
-import { useBuyFacility } from "../api/context/game_functions";
+import { useBuyFacility,useStockBenefit,useGetBenefit } from "../api/context/game_functions";
 
 const TestPage = () => {
   const sand = useSand();
@@ -14,6 +14,8 @@ const TestPage = () => {
   const editSand = useEditSand();
   const editMoney = useEditMoney();
   const buyFacility1 = useBuyFacility(1);
+  const stockBenefit = useStockBenefit();
+  const getBenefit = useGetBenefit();
 
 
   const buttonTest = () => {
@@ -27,7 +29,9 @@ const TestPage = () => {
     console.log(userData);
   };
   const buttonTest2 = () => {
-    buyFacility1();
+    //buyFacility1();
+    //stockBenefit();
+    getBenefit();
     console.log(userData);
   }
 
@@ -48,3 +52,5 @@ const TestPage = () => {
 };
 
 export default TestPage;
+
+

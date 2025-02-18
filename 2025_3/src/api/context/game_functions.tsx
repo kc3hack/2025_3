@@ -92,3 +92,56 @@ export const useBuyFacility = (index: number) => {
         }
     };
 };
+//施設の収益をストックする関数
+
+   // Facilityのefficiencyの値にUserDataのfacilityの値をかけた分だけFacirityのstockの値を毎秒増やす関数
+   //この関数ではUserDataの値を変更しない
+   //userData.facilityの値が1以上のものに対して、facilityのefficiencyの値分だけstockの値を増やす
+   //stockの値stockの値はFacilityのefficiencyの値にUserDataのfacilityの値をかけた値の3600倍以上にはならない
+
+export const useStockBenefit = () => {//こいつを毎秒実行する感じにする
+    const { userData } = useUserData();
+    const { facility, setFacility } = useFacilityData();
+
+    return (): void => {
+        if (userData && facility) {
+            const updatedFacility = facility.map((fac, index) => {
+                if (userData.facility[index] >= 1) {
+                    const increment = fac.efficiency * userData.facility[index];
+                    const maxStock = fac.efficiency * userData.facility[index] * 3600;
+                    return {
+                        ...fac,
+                        stock: Math.min(fac.stock + increment, maxStock),
+                    };
+                }
+                return fac;
+            });
+
+            setFacility(updatedFacility);
+            localStorage.setItem('facility', JSON.stringify(updatedFacility));
+        }
+    };
+};
+//施設の収益を受け取る関数
+export const useGetBenefit = () => {
+    const { userData, setUserData } = useUserData();
+    const { facility, setFacility } = useFacilityData();
+    return (): void => {
+        if (userData && facility) {
+            const updatedUserData = {
+                ...userData,
+                money: userData.money + facility.reduce((acc, fac, index) => {
+                    const benefit = fac.stock * fac.magnification;
+                    const updatedFacility = [...facility];
+                    updatedFacility[index].stock = 0;
+                    setFacility(updatedFacility);
+                    return acc + benefit;
+                }, 0),
+            };
+            
+            setUserData(updatedUserData);
+            localStorage.setItem('userData', JSON.stringify(updatedUserData));
+            localStorage.setItem('facility', JSON.stringify(facility));
+        }
+    };
+}
