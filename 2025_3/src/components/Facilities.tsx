@@ -7,18 +7,9 @@ import {
   ListItemButton,
 } from "@mui/material";
 import "../css_designs/Facilities.css";
-
-type Facility = {
-  name: string;
-  img_path: string;
-  efficiency: number;
-  cost: number;
-  magnification: number;
-  isLocked: boolean;
-};
+import facilities from "../stores/facilities";
 
 type Props = {
-  facilities: Facility[];
   money: number;
   setMoney: React.Dispatch<React.SetStateAction<number>>;
   facilitylevels: number[];
@@ -26,7 +17,6 @@ type Props = {
 };
 
 function Facilities({
-  facilities,
   money,
   setMoney,
   facilitylevels: levels,
