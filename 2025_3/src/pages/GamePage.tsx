@@ -1,6 +1,6 @@
 import Landscape from '../components/Landscape';
 import Tools from '../components/Tools';
-import FacilitiesWindow from '../components/FacilitiesWindow';
+import Facilities from '../components/Facilities';
 import Menu from '../components/Menu';
 
 function GamePage() {

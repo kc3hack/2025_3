@@ -1,6 +1,6 @@
 // Facilities.tsx の動作を確認するためのテストページ
 
-import FacilitiesWindow from "../components/FacilitiesWindow";
+import Facilities from "../components/Facilities";
 import "../css_designs/test-page.css";
 import { useState } from "react";
 import initialFacilities from "../stores/facilities";
@@ -41,7 +41,7 @@ function TestPage() {
       <h1>Test Page</h1>
       <h1>Test Page</h1>
       <div className="facilities">
-        <FacilitiesWindow
+        <Facilities
           money={money}
           setMoney={setMoney}
           facilities={facilities}
