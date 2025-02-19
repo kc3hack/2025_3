@@ -1,6 +1,6 @@
 // Facilities.tsx の動作を確認するためのテストページ
 
-import Facilities from "../components/Facilities";
+import Facilities from "../components/FacilitiesWindow";
 import "../css_designs/test-page.css";
 import { useState } from "react";
 import initialFacilities from "../stores/facilities";

@@ -6,7 +6,7 @@ import {
   ListItemAvatar,
   ListItemButton,
 } from "@mui/material";
-import "../css_designs/facilities.css";
+import "../css_designs/FacilitiesWindow.css";
 
 export type Facility = {
   name: string;
@@ -19,15 +19,14 @@ export type Facility = {
   stock: number;
 };
 
-
-type FacilitiesProps = {
+type FacilitiesWindowProps = {
   money: number;
   setMoney: React.Dispatch<React.SetStateAction<number>>;
   facilities: Facility[];
   setFacilities: React.Dispatch<React.SetStateAction<Facility[]>>;
 };
 
-function Facilities({ money, setMoney, facilities, setFacilities }: FacilitiesProps) {
+function FacilitiesWindow({ money, setMoney, facilities, setFacilities }: FacilitiesWindowProps) {
   function onFacilityClick(idx: number) {
     // 所持金を減らす
     setMoney(money - facilities[idx].cost);
@@ -90,4 +89,4 @@ function Facilities({ money, setMoney, facilities, setFacilities }: FacilitiesPr
   );
 }
 
-export default Facilities;
+export default FacilitiesWindow;
