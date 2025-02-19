@@ -1,7 +1,7 @@
-function Stats() {
+function Stats({value}) {
     return (
-        <div>
-            <h1>Stats</h1>
+        <div className="stats-item">
+            {value}
         </div>
     )
 }

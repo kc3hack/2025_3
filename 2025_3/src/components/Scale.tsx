@@ -1,4 +1,3 @@
-import React from "react";
 import "./Scale.css";
 function Scale( {value} ) {
   return (
@@ -7,5 +6,4 @@ function Scale( {value} ) {
       </div>
   );
 }
-
 export default Scale;

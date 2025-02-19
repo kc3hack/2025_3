@@ -8,3 +8,7 @@
     width: 400px;
     transform: translate(0%,20%);
 }
+
+.button:focus {
+    outline: none; /* フォーカス時の枠線を無効にする */
+}

@@ -7,7 +7,7 @@ import "./Landscape.css";
 
 
 
-function Landscape() {
+function Landscape({statusValue}) {
  
   const animationTriggers = [10, 20 ,30];
 
@@ -16,11 +16,10 @@ function Landscape() {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
-
-
+  const incleaseScaleValue = 1;
 
   const handleButtonClick = () => {
-    const newScaleValue = scaleValue + 1;
+    const newScaleValue = scaleValue + incleaseScaleValue;
     setScaleValue(newScaleValue);
     if (
       animationIndex < animationTriggers.length &&
@@ -29,13 +28,13 @@ function Landscape() {
        // 次のアニメーションのために目標値を更新
         setAnimationIndex((prevIndex) => prevIndex + 1);
         setCurrentIndex((prevIndex) => (prevIndex + 1));
+        if(isVisible)return;
         // 新たにアニメーションを開始する
         setIsVisible(true);
         // フェードイン状態で5秒待つ
-       window.setTimeout(() => {
+        window.setTimeout(() => {
           setIsVisible(false);
-
-      }, 5000);
+        }, 5000);
     }
   };
 
@@ -48,7 +47,7 @@ function Landscape() {
           </div>
         </div>
         <div className="box status">
-        <Status />
+        <Status  value = {statusValue}/>
         </div>
         <div className="box tipPanel">
           <TipPanel imageIndex={currentIndex-1} isFading={isVisible}/>
