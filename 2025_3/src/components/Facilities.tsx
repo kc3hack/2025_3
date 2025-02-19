@@ -20,14 +20,14 @@ export type Facility = {
 };
 
 
-type Props = {
+type FacilitiesProps = {
   money: number;
   setMoney: React.Dispatch<React.SetStateAction<number>>;
   facilities: Facility[];
   setFacilities: React.Dispatch<React.SetStateAction<Facility[]>>;
 };
 
-function Facilities({ money, setMoney, facilities, setFacilities }: Props) {
+function Facilities({ money, setMoney, facilities, setFacilities }: FacilitiesProps) {
   function onFacilityClick(idx: number) {
     // 所持金を減らす
     setMoney(money - facilities[idx].cost);
