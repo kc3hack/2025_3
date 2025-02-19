@@ -1,15 +1,47 @@
 .tipPanel-container {
   display: flex;
   flex-direction: column;
-  background-color: rgb(229, 255, 0);
-  height: 85%;
+  background-color: rgb(8, 255, 181);
+  height: 100%;
+  width: 250px;
   border: 2px solid #333;
+  transition: opacity 0.5s ease-in-out;
 }
 
+.tipPanel-container .tipsTitle{
+    width: 100%;
+    border: 2px solid #333;
+    background-color: rgb(218, 112, 112);
+    text-align: center;
+}
+
+.tipText-container{
+    display: flex;
+    background-color: blueviolet;
+    flex-direction: row;
+    width: 250px;
+    border: 2px solid #333;
+    justify-content: start;
+    align-items: center;
+}
+
+
+
+.tipText-container  .tipText {
+    height: 100%;
+    width: 100%;    
+    border: 2px solid #333;
+    background-color: rgb(255, 187, 0);
+    text-align: center;
+}
+
+
 .image {
-    width: 200px;
-    height: auto;
+    width: 100px;
+    height: 100px;
     transition: opacity 0.5s ease-in-out;
+    border: 2px solid #333;
+    
 }
 
 .fade-in {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState , useRef} from "react";
 import Mountain from "./Mountain";
 import Scale from "./Scale";
 import Status from "./Status";
@@ -17,6 +17,10 @@ function Landscape() {
   const [scaleValue, setScaleValue] = useState(0);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [isVisible, setIsVisible] = useState<boolean>(false);
+
+
+
+
   const handleButtonClick = () => {
     const newScaleValue = scaleValue + 1;
     setScaleValue(newScaleValue);
@@ -24,16 +28,15 @@ function Landscape() {
       animationIndex < animationTriggers.length &&
       newScaleValue === animationTriggers[animationIndex]
     ) {
-      if (isVisible) return;
-      setIsVisible(true);
-      setTimeout(() => {
-        setIsVisible(false);
-        // フェードアウトのアニメーションが終わる0.5秒後に次の画像に切り替える
-        setTimeout(() => {
-          // 配列の長さで割った余りを使って循環させる
-          setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-          setAnimationIndex((prevIndex) => prevIndex + 1);
-        }, 500);
+       // 次のアニメーションのために目標値を更新
+        setAnimationIndex((prevIndex) => prevIndex + 1);
+        setCurrentIndex((prevIndex) => (prevIndex + 1));
+        // 新たにアニメーションを開始する
+        setIsVisible(true);
+        // フェードイン状態で5秒待つ
+       window.setTimeout(() => {
+          setIsVisible(false);
+
       }, 5000);
     }
   };
@@ -50,7 +53,7 @@ function Landscape() {
         <Status />
         </div>
         <div className="box tipPanel">
-          <TipPanel image={images[currentIndex]} isFading={isVisible}/>
+          <TipPanel image={images[currentIndex-1]} isFading={isVisible}/>
         </div>
         <div className="box mountain">
           <Mountain onButtonClick={handleButtonClick}/>
