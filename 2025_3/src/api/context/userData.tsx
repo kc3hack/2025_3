@@ -14,28 +14,25 @@ interface UserDataProviderProps {
 }
 
 const UserDataProvider: React.FC<UserDataProviderProps> = ({ children }) => {
-    const [userData, setUserData] = useState<UserData | null>(null);
-
-    useEffect(() => {
-        // localStorageからデータを取得
-        const storedData = localStorage.getItem('userData');
-        if (storedData) {
-            setUserData(JSON.parse(storedData));
-        } else {
-            // initialData.jsonからデータを取得
-            const initialUserData: UserData = createUserData(
-                initialData.id,
-                initialData.name,
-                initialData.sand,
-                initialData.elevation,
-                initialData.money,
-                initialData.facility,
-                initialData.tool_level
-            );
-            setUserData(initialUserData);
-            localStorage.setItem('userData', JSON.stringify(initialUserData));
-        }
-    }, []);
+    let initialUserData : UserData;
+    // localStorageからデータを取得
+    const storedData = localStorage.getItem('userData');
+    if (storedData) {
+        initialUserData = JSON.parse(storedData);
+    } else {
+        // initialData.jsonからデータを取得
+        initialUserData = createUserData(
+            initialData.id,
+            initialData.name,
+            initialData.sand,
+            initialData.elevation,
+            initialData.money,
+            initialData.facility,
+            initialData.tool_level
+        );
+        localStorage.setItem('userData', JSON.stringify(initialUserData));
+    }
+    const [userData, setUserData] = useState<UserData | null>(initialData);
 
     return (
         <UserDataContext.Provider value={{ userData, setUserData }}>

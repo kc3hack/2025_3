@@ -7,71 +7,49 @@ import {
   ListItemButton,
 } from "@mui/material";
 import "../css_designs/FacilitiesWindow.css";
+import { useMoney, useUserData } from "../api/context/get_edit";
+import { useBuyFacility, useFacilityData } from "../api/context/game_functions";
 
-export type Facility = {
-  name: string;
-  img_path: string;
-  efficiency: number;
-  cost: number;
-  magnification: number;
-  isLocked: boolean;
-  level: number;
-  stock: number;
-};
+function FacilitiesWindow() {
+  const money = useMoney();
+  const facilityLevels = useUserData().userData?.facility;
+  const { facility } = useFacilityData();
+  const buyFacility = useBuyFacility();
+  console.log(facilityLevels);
 
-type FacilitiesWindowProps = {
-  money: number;
-  setMoney: React.Dispatch<React.SetStateAction<number>>;
-  facilities: Facility[];
-  setFacilities: React.Dispatch<React.SetStateAction<Facility[]>>;
-};
-
-function FacilitiesWindow({ money, setMoney, facilities, setFacilities }: FacilitiesWindowProps) {
-  function onFacilityClick(idx: number) {
-    // 所持金を減らす
-    setMoney(money - facilities[idx].cost);
-
-    // 施設のレベル、コストを上げる
-    const newFacilities = facilities.slice();
-    newFacilities[idx].level++;
-    newFacilities[idx].cost = Math.round(
-      facilities[idx].cost * facilities[idx].magnification
-    );
-    setFacilities(newFacilities);
-  }
-
-  const facilityItems = facilities.map((facility, idx) => {
+  const facilityItems = facility.map((fac, idx) => {
+    const isLocked = facilityLevels![idx] === 0;
     return (
       <ListItem className="facility-item" key={idx}>
         <ListItemButton
           className="facility-button"
-          onClick={() => onFacilityClick(idx)}
-          disabled={facility.isLocked || money < facilities[idx].cost}
+          onClick={() => buyFacility(idx)}
+          disabled={isLocked || money! < fac.cost}
         >
           <div className="facility-info">
             <ListItemAvatar
               sx={{
-                filter: facility.isLocked ? "brightness(0%) blur(3px)" : "none",
+                filter: isLocked ? "brightness(0%) blur(3px)" : "none",
               }}
             >
               <img
                 className="facility-avatar"
-                src={facility.img_path}
-                alt={`${facility.name}の画像`}
+                src={fac.img_path}
+                alt={`${fac.name}の画像`}
               />
             </ListItemAvatar>
-            {facility.isLocked ? (
+            {isLocked ? (
               "？？？"
             ) : (
               <>
-                {facility.name}
+                {fac.name}
                 <br />
-                {"¥" + facilities[idx].cost.toLocaleString()}
+                {"¥" + fac.cost.toLocaleString()}
               </>
             )}
           </div>
-          {!facility.isLocked && (
-            <div className="facility-level">Lv.{facilities[idx].level}</div>
+          {!isLocked && (
+            <div className="facility-level">Lv.{facilityLevels![idx]}</div>
           )}
         </ListItemButton>
       </ListItem>

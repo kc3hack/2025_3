@@ -46,7 +46,7 @@ export const useCalcElevation = ()=> {
 //道具のlevelを上げる関数
 export const useTool_levelup = () => {
     const { userData, setUserData } = useUserData();
-   
+
     return (): void => {
         if (userData) {
              const fee=10*userData.tool_level;//この辺用改変
@@ -66,14 +66,14 @@ export const useTool_levelup = () => {
 }
 
 // 施設の購入を行える関数（配列の一部値を増減させる関数）
-export const useBuyFacility = (index: number) => {
+export const useBuyFacility = () => {
     const { userData, setUserData } = useUserData();
     const facilityContext = useContext(FacilityContext);
     if (!facilityContext) {
         throw new Error("useBuyFacility must be used within a FacilityProvider");
     }
     const { facility } = facilityContext;
-    return (): void => {
+    return (index: number): void => {
         if (userData) {
             const fee = facility[index].cost;//この辺用改変
             if (userData.money < fee) {
@@ -138,7 +138,7 @@ export const useGetBenefit = () => {
                     return acc + benefit;
                 }, 0),
             };
-            
+
             setUserData(updatedUserData);
             localStorage.setItem('userData', JSON.stringify(updatedUserData));
             localStorage.setItem('facility', JSON.stringify(facility));
