@@ -1,9 +1,10 @@
-function Mountain() {
+import React from "react";
+import "./Mountain.css";
+function Mountain({ onButtonClick }) {
   return (
-    <div>
-      <h2>Mountain</h2>
+    <div >
+      <button className="button" onClick={onButtonClick}>Mountain</button>
     </div>
   );
 }
-
 export default Mountain;

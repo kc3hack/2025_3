@@ -1,0 +1,64 @@
+.landscape {
+  display: grid;
+  width: 100vw; /* ビューポート全体の幅 */
+  height: 100vh; /* ビューポート全体の高さ */
+  grid-template-columns:25% 75%;
+  grid-template-rows: 25%   75%;
+  background-color: aqua;
+  gap: 0; 
+  grid-template-areas: 
+    "left-top right-big"
+    "left-bottom right-big";
+}
+.container {
+    grid-area: right-big;
+    display: flex;
+    background-color: rgb(238, 238, 3);
+    flex-direction: column; /* 縦方向に並ぶ */
+    height: 85%;/*コンテナの高さを決める */
+    border: 2px solid #333;
+  }
+
+ 
+.box {
+    flex: 0.5;
+    border: 1px solid #ff0000;
+    display: flex;
+    background-color: rgb(0, 0, 255);
+  }
+  
+.box.mountain {
+    flex: 3;
+    justify-content: center;
+    align-items: end;
+  }
+
+.box.tipPanel {
+    flex: 2;
+    background-color: rgb(255, 0, 0);
+    justify-content: center;
+    align-items: start;
+  }
+
+.box.scale {
+    background-color: rgb(0, 255, 0);
+    align-items: center;
+    justify-items:start;
+  }
+
+.box.scale  .inner-container{
+    display: flex;
+    align-items: center;
+  }
+
+  .inner-container :first-child{
+    width: auto;
+    height: 50px;
+  }
+
+
+.box.status {
+    background-color: rgb(0, 255, 255);
+    align-items: center;
+    justify-items:start;
+  }

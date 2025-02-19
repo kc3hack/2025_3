@@ -1,6 +1,8 @@
 function Status() {
 
-  return <div></div>;
+  return <div>
+    <p>Status</p>
+  </div>;
 }
 
 export default Status;

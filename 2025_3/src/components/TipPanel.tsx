@@ -1,7 +1,8 @@
-function TipPanel() {
+import "./TipPanel.css"
+function TipPanel({image,isFading}) {
     return (
-        <div>
-        <p>TipPanel</p>
+        <div className="tipPanel-container">
+            <img src={image} alt="Tip"className={`image ${isFading ? "fade-out" : "fade-in"}`}/>
         </div>
     );
 }
