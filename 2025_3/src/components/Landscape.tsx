@@ -1,4 +1,4 @@
-import React, { useState , useRef} from "react";
+import React, { useState } from "react";
 import Mountain from "./Mountain";
 import Scale from "./Scale";
 import Status from "./Status";
@@ -51,7 +51,7 @@ function Landscape() {
         <Status />
         </div>
         <div className="box tipPanel">
-          <TipPanel image={currentIndex-1} isFading={isVisible}/>
+          <TipPanel imageIndex={currentIndex-1} isFading={isVisible}/>
         </div>
         <div className="box mountain">
           <Mountain onButtonClick={handleButtonClick}/>

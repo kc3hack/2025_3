@@ -3,14 +3,16 @@ import tipA from "../assets/a.png";
 import tipB from "../assets/b.png";
 import tipC from "../assets/c.png";
 
-function TipPanel({image,isFading}) {
+function TipPanel({imageIndex,isFading}) {
     const images = [tipA, tipB, tipC];
+    const tipsTitles = ["TipsTitleA","TipsTitleB","TipsTitleC"];
+    const tipsText = ["TipsA","TipsB","TipsC"];
     return (
         <div className= {`tipPanel-container ${isFading ? "fade-out" : "fade-in"}`}>
-                <div className="tipsTitle">TipsTitle</div>
+                <div className="tipsTitle">{tipsTitles[imageIndex]}</div>
             <div className="tipText-container">
-                <img src={images[image]} alt="Tip"className={`image`}/>
-                <h3 className="tipText">かんさいTipsを表示ここにかんさいTipsを表示ここにかんさいTipsを表示ここにかんさいTipsを表示</h3>
+                <img src={images[imageIndex]} alt="Tip"className={`image`}/>
+                <h3 className="tipText">{tipsText[imageIndex]}</h3>
             </div>
         </div>
     );
