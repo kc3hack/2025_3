@@ -5,12 +5,10 @@ import Status from "./Status";
 import TipPanel from "./TipPanel";
 import "./Landscape.css";
 
-import tipA from "../assets/a.png";
-import tipB from "../assets/b.png";
-import tipC from "../assets/c.png";
+
 
 function Landscape() {
-  const images = [tipA, tipB, tipC];
+ 
   const animationTriggers = [10, 20 ,30];
 
   const [animationIndex, setAnimationIndex] = useState<number>(0);
@@ -53,7 +51,7 @@ function Landscape() {
         <Status />
         </div>
         <div className="box tipPanel">
-          <TipPanel image={images[currentIndex-1]} isFading={isVisible}/>
+          <TipPanel image={currentIndex-1} isFading={isVisible}/>
         </div>
         <div className="box mountain">
           <Mountain onButtonClick={handleButtonClick}/>
