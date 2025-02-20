@@ -8,7 +8,8 @@ interface UserData {
     tool_level: number;// 道具のレベル
 }
 interface Landmark {// tipsで用いるランドマークの情報
-    length: number,      // 標高、全長、周長など
+    height: number,      // 標高、全長、周長など
+    markpoint: number,   // マークポイント
     name: string,        // 名前
     prefecture: string,  // 都道府県
     description: string, // 説明

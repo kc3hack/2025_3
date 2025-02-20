@@ -10,6 +10,8 @@ import {
   useMoney,
   useEditMoney,
   useUserData,
+  useLmHeights,
+  useLmDescriptions,
 } from "../api/context/get_edit";
 import {
   useBuyFacility,
@@ -33,11 +35,15 @@ const TestPage = () => {
   const buyFacility = useBuyFacility();
   const stockBenefit = useStockBenefit();
   const getBenefit = useGetBenefit();
+  const lmHeights = useLmHeights();
+  const lmDescriptions = useLmDescriptions();
 
   const incrementMoneyTest = () => {
     if (typeof money === "number") {
       editMoney(money + 1); // お金を1増やす
     }
+    console.log(lmHeights);
+    console.log(lmDescriptions);
   };
   const unlockTest = () => {
     if (userData && userData.facility && setUserData) {
@@ -68,7 +74,7 @@ const TestPage = () => {
       if (userData && userData.facility && facility) {
         stockBenefit(interval);
         const stocks = facility.map((fac: Facility) => fac.stock.toFixed(2));
-        console.log("stocks", stocks);
+      //  console.log("stocks", stocks);
       }
     }, interval * 1000);
     return () => clearInterval(intervalId);

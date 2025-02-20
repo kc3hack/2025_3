@@ -5,13 +5,16 @@ import './index.css';
 import App from './App.tsx';
 import { UserDataProvider } from './api/context/userData';
 import { FacilityProvider } from './api/context/facility.tsx';
+import { LandmarkProvider } from "./api/context/landmark.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <CssBaseline />
     <UserDataProvider>
       <FacilityProvider>
-      <App />
+        <LandmarkProvider>
+          <App />
+        </LandmarkProvider>
       </FacilityProvider>
     </UserDataProvider>
   </StrictMode>,

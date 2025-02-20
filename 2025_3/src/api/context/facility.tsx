@@ -1,5 +1,4 @@
 import { Facility } from "../dataType";
-import { createUserData } from "../genUserData";
 import { createContext, useState, useEffect, ReactNode } from "react";
 import initialFacility from "../../stores/inicialFacilities";
 
