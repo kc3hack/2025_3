@@ -17,11 +17,14 @@ function FacilitiesWindow() {
   const buyFacility = useBuyFacility();
 
   let facilityItems = null;
-  if (facility){
+  if (facility) {
     facilityItems = facility.map((fac, idx) => {
       if (!facilityLevels) return null;
       const isLocked = facilityLevels![idx] === 0;
-      const cost = Math.round(fac.cost * fac.magnification ** (facilityLevels![idx] - 1));
+      const isNext = isLocked && idx > 0 && facilityLevels![idx - 1] > 0;
+      const cost = Math.round(
+        fac.cost * fac.magnification ** (facilityLevels![idx] - 1)
+      );
       return (
         <ListItem className="facility-item" key={idx}>
           <ListItemButton
@@ -32,7 +35,8 @@ function FacilitiesWindow() {
             <div className="facility-info">
               <ListItemAvatar
                 sx={{
-                  filter: isLocked ? "brightness(0%) blur(3px)" : "none",
+                  filter:
+                    isLocked && !isNext ? "brightness(0%) blur(3px)" : "none",
                 }}
               >
                 <img
@@ -41,14 +45,16 @@ function FacilitiesWindow() {
                   alt={`${fac.name}の画像`}
                 />
               </ListItemAvatar>
-              {isLocked ? (
-                "？？？"
-              ) : (
+              {!isLocked ? (
                 <>
                   {fac.name}
                   <br />
                   {"¥" + cost.toLocaleString()}
                 </>
+              ) : isNext ? (
+                <>{fac.name}</>
+              ) : (
+                <>？？？</>
               )}
             </div>
             {!isLocked && (
@@ -59,7 +65,6 @@ function FacilitiesWindow() {
       );
     });
   }
-
 
   return (
     <Box className="facilities-box">
