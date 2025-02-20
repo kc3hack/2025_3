@@ -49,6 +49,7 @@ const TestPage = () => {
         }
       }
       setUserData(newUserData);
+      localStorage.setItem("userData", JSON.stringify(newUserData));
     }
   };
   const getBenefitTest = () => {
@@ -67,8 +68,6 @@ const TestPage = () => {
     const intervalId = setInterval(() => {
       if (userData && userData.facility && facility) {
         stockBenefit(interval);
-        const stocks = facility.map((fac: Facility) => fac.stock.toFixed(2));
-        console.log("stocks", stocks);
       }
     }, interval * 1000);
     return () => clearInterval(intervalId);
@@ -101,7 +100,6 @@ const TestPage = () => {
       <div className="facilities-view">
         <FacilitiesView />
       </div>
-
     </div>
   );
 };
