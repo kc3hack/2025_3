@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import "../css_designs/FacilitiesWindow.css";
 import { useMoney, useUserData } from "../api/context/get_edit";
-import { useBuyFacility, useFacilityData } from "../api/context/game_functions";
+import { useBuyFacility, useFacilityData } from "../api/game_functions";
 
 function FacilitiesWindow() {
   const money = useMoney();
