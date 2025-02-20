@@ -93,7 +93,6 @@ export const useBuyFacility = () => {
             const updatedFacilityData = [...facility];
             updatedFacilityData[index].cost = Math.round(initialFacilities[index].cost * Math.pow(facility[index].magnification, updatedFacility[index]));
             setFacility(updatedFacilityData);
-            localStorage.setItem('facility', JSON.stringify(updatedFacilityData));
         }
     };
 };
@@ -123,7 +122,6 @@ export const useStockBenefit = () => {//こいつを毎秒実行する感じに�
             });
 
             setFacility(updatedFacility);
-            localStorage.setItem('facility', JSON.stringify(updatedFacility));
         }
     };
 };
@@ -141,13 +139,12 @@ export const useGetBenefit = () => {
                     const updatedFacility = [...facility];
                     updatedFacility[index].stock = 0;
                     setFacility(updatedFacility);
-                    return acc + benefit;
+                    return Math.floor(acc + benefit);
                 }, 0),
             };
 
             setUserData(updatedUserData);
             localStorage.setItem('userData', JSON.stringify(updatedUserData));
-            localStorage.setItem('facility', JSON.stringify(facility));
         }
     };
 }

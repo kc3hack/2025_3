@@ -16,13 +16,7 @@ const FacilityProvider: React.FC<FacilityProviderProps> = ({ children }) => {
     const [facility, setFacility] = useState<Facility[] | null>(null);
 
     useEffect(() => {
-        const storedData = localStorage.getItem('facility');
-        if (storedData) {
-            setFacility(JSON.parse(storedData));
-        } else {
             setFacility(initialFacility);
-            localStorage.setItem('facility', JSON.stringify(initialFacility));
-        }
     }, []);
 
     return (

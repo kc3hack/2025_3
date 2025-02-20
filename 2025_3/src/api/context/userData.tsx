@@ -1,4 +1,4 @@
-import initialData from "./initialData.json";
+import initialData from "../../stores/initialData.json";
 import { UserData } from "../dataType";
 import { createUserData } from "../genUserData";
 import { createContext, useState, useEffect, ReactNode } from "react";
