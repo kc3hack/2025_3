@@ -1,7 +1,9 @@
 import { useContext } from 'react';
 import { UserDataContext } from './userData';
 import { LandmarkContext } from './landmark';
+import { ToolContext } from './tools';
 import { UserData,Landmark } from '../dataType';
+
 
 // ユーザーデータを取得するカスタムフック
 export const useUserData = () => {
@@ -195,5 +197,40 @@ export const useLmImgPaths = (): string[] | null => {
     return landmarks.map(landmark => landmark.img_path);
 };
 
+//道具の種類の全情報を取得するカスタムフック
+export const useTools = () => {
+    const context = useContext(ToolContext);
+    if (!context) {
+        throw new Error("useTools must be used within a ToolProvider");
+    }
+    return context;
+}
+
+//道具の名前を取得するカスタムフック
+export const useToolNames = (): string[] | null => {
+    const { tools } = useTools();
+    if (!tools) {
+        return null;
+    }
+    return tools.map(tool => tool.name);
+}
+
+//道具の画像パスを取得するカスタムフック
+export const useToolImgPaths = (): string[] | null => {
+    const { tools } = useTools();
+    if (!tools) {
+        return null;
+    }
+    return tools.map(tool => tool.img_path);
+}
+
+//道具の最低レベルを取得するカスタムフック
+export const useToolMinLevels = (): number[] | null => {
+    const { tools } = useTools();
+    if (!tools) {
+        return null;
+    }
+    return tools.map(tool => tool.minLevel);
+}
 
 

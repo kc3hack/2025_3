@@ -12,6 +12,8 @@ import {
   useUserData,
   useLmHeights,
   useLmDescriptions,
+  useTools,
+  useToolMinLevels
 } from "../api/context/get_edit";
 import {
   useBuyFacility,
@@ -37,6 +39,8 @@ const TestPage = () => {
   const getBenefit = useGetBenefit();
   const lmHeights = useLmHeights();
   const lmDescriptions = useLmDescriptions();
+  const tools = useTools();
+  const toolMinLevels = useToolMinLevels();
 
   const incrementMoneyTest = () => {
     if (typeof money === "number") {
@@ -44,6 +48,8 @@ const TestPage = () => {
     }
     console.log(lmHeights);
     console.log(lmDescriptions);
+    console.log(tools);
+console.log(toolMinLevels);
   };
   const unlockTest = () => {
     if (userData && userData.facility && setUserData) {

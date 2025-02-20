@@ -6,6 +6,7 @@ import App from './App.tsx';
 import { UserDataProvider } from './api/context/userData';
 import { FacilityProvider } from './api/context/facility.tsx';
 import { LandmarkProvider } from "./api/context/landmark.tsx";
+import { ToolProvider } from "./api/context/tools.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -13,7 +14,9 @@ createRoot(document.getElementById("root")!).render(
     <UserDataProvider>
       <FacilityProvider>
         <LandmarkProvider>
-          <App />
+          <ToolProvider>
+            <App />
+          </ToolProvider>
         </LandmarkProvider>
       </FacilityProvider>
     </UserDataProvider>

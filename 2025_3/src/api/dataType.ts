@@ -23,6 +23,11 @@ interface Facility {
     magnification: number, // 倍率
     stock: number,      //収益のストック
 }
+interface Tool {
+    name: string,       // 名前
+    img_path: string,   // 画像のパス
+    minLevel: number,   // 最低レベル
+}
 
 
-export type { UserData, Landmark, Facility };
+export type { UserData, Landmark, Facility, Tool };
