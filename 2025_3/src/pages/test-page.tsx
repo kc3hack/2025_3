@@ -2,28 +2,31 @@ import "../css_designs/test-page.css";
 import { testfnc1 } from "../api/testfnc";
 import { UserDataContext } from "../api/context/userData";
 import { FacilityContext } from "../api/context/facility";
-import { useContext } from "react";
+import { use, useContext, useEffect } from "react";
 import {
   useUserId,
   useSand,
   useEditSand,
   useMoney,
   useEditMoney,
+  useUserData,
 } from "../api/context/get_edit";
 import {
   useBuyFacility,
   useStockBenefit,
   useGetBenefit,
+  useFacilityData,
 } from "../api/context/game_functions";
 import FacilitiesWindow from "../components/FacilitiesWindow";
 import FacilitiesView from "../components/FacilitiesView";
 import { Box } from "@mui/material";
+import { Facility } from "../api/dataType";
 
 const TestPage = () => {
   const sand = useSand();
   const money = useMoney();
-  const context = useContext(FacilityContext);
-  const { userData, setUserData } = useContext(UserDataContext);
+  const { facility, setFacility } = useFacilityData();
+  const { userData, setUserData } = useUserData();
   const editSand = useEditSand();
   const editMoney = useEditMoney();
   const buyFacility = useBuyFacility();
@@ -47,6 +50,21 @@ const TestPage = () => {
       setUserData(newUserData);
     }
   };
+  const buttonTest3 = () => {
+    getBenefit();
+  };
+
+  // 1fpsのメインループ
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (userData && userData.facility) {
+        stockBenefit();
+        const stocks = facility.map((fac: Facility) => fac.stock);
+        console.log("stocks", stocks);
+      }
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [userData, facility, stockBenefit]);
 
   return (
     <div className="test-page">
@@ -55,7 +73,8 @@ const TestPage = () => {
       <button onClick={buttonTest}>money++</button>
       <br />
       <button onClick={buttonTest2}>unlock</button>
-
+      <br />
+      <button onClick={buttonTest3}>get benefit</button>
       <Box
         className="ground"
         sx={{

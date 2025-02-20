@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { UserDataContext } from './userData';
 import { FacilityContext } from './facility';
 import { UserData,Facility } from '../dataType';
+import initialFacilities from '../../stores/inicialFacilities';
 
 // ユーザーデータを取得するカスタムフック
 export const useUserData = () => {
@@ -72,10 +73,10 @@ export const useBuyFacility = () => {
     if (!facilityContext) {
         throw new Error("useBuyFacility must be used within a FacilityProvider");
     }
-    const { facility } = facilityContext;
+    const { facility, setFacility } = facilityContext;
     return (index: number): void => {
         if (userData) {
-            const fee = facility[index].cost;//この辺用改変
+            const fee = facility[index].cost; //この辺用改変
             if (userData.money < fee) {
                 alert("お金が足りません");
                 return;
@@ -89,6 +90,10 @@ export const useBuyFacility = () => {
             };
             setUserData(updatedUserData);
             localStorage.setItem('userData', JSON.stringify(updatedUserData));
+            const updatedFacilityData = [...facility];
+            updatedFacilityData[index].cost = Math.round(initialFacilities[index].cost * Math.pow(facility[index].magnification, updatedFacility[index]));
+            setFacility(updatedFacilityData);
+            localStorage.setItem('facility', JSON.stringify(updatedFacilityData));
         }
     };
 };
@@ -122,6 +127,7 @@ export const useStockBenefit = () => {//こいつを毎秒実行する感じに�
         }
     };
 };
+
 //施設の収益を受け取る関数
 export const useGetBenefit = () => {
     const { userData, setUserData } = useUserData();
@@ -131,7 +137,7 @@ export const useGetBenefit = () => {
             const updatedUserData = {
                 ...userData,
                 money: userData.money + facility.reduce((acc, fac, index) => {
-                    const benefit = fac.stock * fac.magnification;
+                    const benefit = fac.stock;
                     const updatedFacility = [...facility];
                     updatedFacility[index].stock = 0;
                     setFacility(updatedFacility);
