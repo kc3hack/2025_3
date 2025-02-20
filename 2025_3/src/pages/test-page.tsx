@@ -21,6 +21,7 @@ import FacilitiesWindow from "../components/FacilitiesWindow";
 import FacilitiesView from "../components/FacilitiesView";
 import { Box } from "@mui/material";
 import { Facility } from "../api/dataType";
+import initialFacilities from "../stores/inicialFacilities";
 
 const TestPage = () => {
   const sand = useSand();
@@ -33,12 +34,12 @@ const TestPage = () => {
   const stockBenefit = useStockBenefit();
   const getBenefit = useGetBenefit();
 
-  const buttonTest = () => {
+  const incrementMoneyTest = () => {
     if (typeof money === "number") {
       editMoney(money + 1); // お金を1増やす
     }
   };
-  const buttonTest2 = () => {
+  const unlockTest = () => {
     if (userData && userData.facility && setUserData) {
       const newUserData = { ...userData };
       for (let i = 0; i < userData.facility.length; i++) {
@@ -50,31 +51,40 @@ const TestPage = () => {
       setUserData(newUserData);
     }
   };
-  const buttonTest3 = () => {
+  const getBenefitTest = () => {
     getBenefit();
   };
+  const reset = () => {
+    localStorage.removeItem("userData");
+    localStorage.removeItem("facility");
+    setFacility(initialFacilities);
+    window.location.reload();
+  };
 
-  // 1fpsのメインループ
+  // 60fpsのメインループ
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (userData && userData.facility) {
-        stockBenefit();
-        const stocks = facility.map((fac: Facility) => fac.stock);
+    const interval = 1 / 60;
+    const intervalId = setInterval(() => {
+      if (userData && userData.facility && facility) {
+        stockBenefit(interval);
+        const stocks = facility.map((fac: Facility) => fac.stock.toFixed(2));
         console.log("stocks", stocks);
       }
-    }, 1000);
-    return () => clearInterval(interval);
+    }, interval * 1000);
+    return () => clearInterval(intervalId);
   }, [userData, facility, stockBenefit]);
 
   return (
     <div className="test-page">
       {"money: ¥" + money?.toLocaleString()}
       <br />
-      <button onClick={buttonTest}>money++</button>
+      <button onClick={incrementMoneyTest}>money++</button>
       <br />
-      <button onClick={buttonTest2}>unlock</button>
+      <button onClick={unlockTest}>unlock</button>
       <br />
-      <button onClick={buttonTest3}>get benefit</button>
+      <button onClick={getBenefitTest}>get benefit</button>
+      <br />
+      <button onClick={reset}>reset</button>
       <Box
         className="ground"
         sx={{

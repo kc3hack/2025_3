@@ -75,7 +75,7 @@ export const useBuyFacility = () => {
     }
     const { facility, setFacility } = facilityContext;
     return (index: number): void => {
-        if (userData) {
+        if (userData && facility) {
             const fee = facility[index].cost; //この辺用改変
             if (userData.money < fee) {
                 alert("お金が足りません");
@@ -108,11 +108,11 @@ export const useStockBenefit = () => {//こいつを毎秒実行する感じに�
     const { userData } = useUserData();
     const { facility, setFacility } = useFacilityData();
 
-    return (): void => {
+    return (deltaTime: number): void => {
         if (userData && facility) {
             const updatedFacility = facility.map((fac, index) => {
                 if (userData.facility[index] >= 1) {
-                    const increment = fac.efficiency * userData.facility[index];
+                    const increment = fac.efficiency * userData.facility[index] * deltaTime;
                     const maxStock = fac.efficiency * userData.facility[index] * 3600;
                     return {
                         ...fac,
@@ -137,7 +137,7 @@ export const useGetBenefit = () => {
             const updatedUserData = {
                 ...userData,
                 money: userData.money + facility.reduce((acc, fac, index) => {
-                    const benefit = fac.stock;
+                    const benefit = Math.floor(fac.stock);
                     const updatedFacility = [...facility];
                     updatedFacility[index].stock = 0;
                     setFacility(updatedFacility);
