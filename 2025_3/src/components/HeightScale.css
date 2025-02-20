@@ -1,0 +1,7 @@
+.heightScale{
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 4px; /* 横線の太さ */
+    background-color: rgb(255, 251, 0);
+  }

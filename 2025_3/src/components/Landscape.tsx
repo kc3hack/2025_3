@@ -4,8 +4,9 @@ import Scale from "./Scale";
 import Status from "./Status";
 import TipPanel from "./TipPanel";
 import "./Landscape.css";
+import HeightScale from "./HeightScale";
 
-
+const MAX_ELEVATION = 100;
 
 function Landscape({statusValue}) {
  
@@ -15,10 +16,16 @@ function Landscape({statusValue}) {
   const [scaleValue, setScaleValue] = useState(0);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [isVisible, setIsVisible] = useState<boolean>(false);
+  const [elevation, setElevation] = useState<number>(0);
 
   const incleaseScaleValue = 1;
 
   const handleButtonClick = () => {
+    setElevation((prev) => {
+      const next = prev + incleaseScaleValue*10;
+      // 最大値を超えたら0に戻す（または初期値にリセット）
+      return next > MAX_ELEVATION ? incleaseScaleValue*10 : next;
+    });
     const newScaleValue = scaleValue + incleaseScaleValue;
     setScaleValue(newScaleValue);
     if (
@@ -39,24 +46,27 @@ function Landscape({statusValue}) {
   };
 
   return (
-    <div className="landscape">
-      <div className="container">
-        <div className="box scale">
-          <div className="inner-container">
-            <Scale value={scaleValue}/>
+    <>
+        <div className="landscape">
+            <HeightScale elevation={elevation}/>
+          <div className="container">
+            <div className="box scale">
+              <div className="inner-container">
+                <Scale value={scaleValue}/>
+              </div>
+            </div>
+            <div className="box status">
+            <Status  value = {statusValue}/>
+            </div>
+            <div className="box tipPanel">
+              <TipPanel imageIndex={currentIndex-1} isFading={isVisible}/>
+            </div>
+            <div className="box mountain">
+              <Mountain onButtonClick={handleButtonClick}/>
+            </div>
           </div>
         </div>
-        <div className="box status">
-        <Status  value = {statusValue}/>
-        </div>
-        <div className="box tipPanel">
-          <TipPanel imageIndex={currentIndex-1} isFading={isVisible}/>
-        </div>
-        <div className="box mountain">
-          <Mountain onButtonClick={handleButtonClick}/>
-        </div>
-      </div>
-    </div>
+    </>
   );
 }
 

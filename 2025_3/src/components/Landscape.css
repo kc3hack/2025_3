@@ -1,5 +1,6 @@
 .landscape {
   display: grid;
+  position: relative;
   width: 100vw; /* ビューポート全体の幅 */
   height: 100vh; /* ビューポート全体の高さ */
   grid-template-columns:25% 75%;
@@ -10,6 +11,9 @@
     "left-top right-big"
     "left-bottom right-big";
 }
+
+
+
 .container {
     grid-area: right-big;
     display: flex;
