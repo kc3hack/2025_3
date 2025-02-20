@@ -17,6 +17,7 @@ function FacilitiesWindow() {
   const buyFacility = useBuyFacility();
 
   const facilityItems = facility.map((fac, idx) => {
+    if (!facilityLevels) return null;
     const isLocked = facilityLevels![idx] === 0;
     return (
       <ListItem className="facility-item" key={idx}>

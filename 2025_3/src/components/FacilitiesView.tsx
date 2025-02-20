@@ -9,6 +9,7 @@ function FacilitiesView() {
   const itemSize = 100;
 
   const facilityItems = facility.map((fac, idx) => {
+    if (!facilityLevels) return null;
     if (facilityLevels![idx] === 0) return <div key={idx}></div>;
 
     const ratio_left = idx / (facility.length - 1);
