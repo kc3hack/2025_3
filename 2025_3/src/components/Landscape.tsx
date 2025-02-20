@@ -18,7 +18,7 @@ function Landscape({statusValue}) {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const [elevation, setElevation] = useState<number>(0);
 
-  const incleaseScaleValue = 18; 
+  const incleaseScaleValue = 1; 
 
   const handleButtonClick = () => {
     setElevation((prev) => {

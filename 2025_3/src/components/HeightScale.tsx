@@ -10,7 +10,10 @@ function HeightScale({ elevation, value }) {
 
   // 背景色を決定する関数
   const getLineColor = (computedValue: number) => {
-    return computedValue % 100 === 0 ? "red" : "rgb(255,251,0)";
+    if (computedValue %100 === 0) {
+      return "red";
+    }
+    return computedValue % 50 === 0 ? "blue" : "rgb(255,251,0)";
   };
 
   return (
