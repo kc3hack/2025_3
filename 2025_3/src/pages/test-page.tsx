@@ -1,4 +1,3 @@
-import Facilities from "../components/FacilitiesWindow";
 import "../css_designs/test-page.css";
 import { testfnc1 } from "../api/testfnc";
 import { UserDataContext } from "../api/context/userData";
@@ -17,6 +16,8 @@ import {
   useGetBenefit,
 } from "../api/context/game_functions";
 import FacilitiesWindow from "../components/FacilitiesWindow";
+import FacilitiesView from "../components/FacilitiesView";
+import { Box } from "@mui/material";
 
 const TestPage = () => {
   const sand = useSand();
@@ -54,9 +55,24 @@ const TestPage = () => {
       <button onClick={buttonTest}>money++</button>
       <br />
       <button onClick={buttonTest2}>unlock</button>
-      <div className="facilities">
+
+      <Box
+        className="ground"
+        sx={{
+          backgroundColor: "saddlebrown",
+          width: "100%",
+          height: "100px",
+          position: "absolute",
+          bottom: 0,
+        }}
+      />
+      <div className="facilities-window">
         <FacilitiesWindow />
       </div>
+      <div className="facilities-view">
+        <FacilitiesView />
+      </div>
+
     </div>
   );
 };

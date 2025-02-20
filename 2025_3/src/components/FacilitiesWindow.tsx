@@ -15,7 +15,6 @@ function FacilitiesWindow() {
   const facilityLevels = useUserData().userData?.facility;
   const { facility } = useFacilityData();
   const buyFacility = useBuyFacility();
-  console.log(facilityLevels);
 
   const facilityItems = facility.map((fac, idx) => {
     const isLocked = facilityLevels![idx] === 0;

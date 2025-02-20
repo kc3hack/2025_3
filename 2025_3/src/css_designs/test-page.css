@@ -1,14 +1,22 @@
 .test-page {
-    width: 100vw;
-    height: 100vh;
-    background-color: #BEECF8;
-    overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  background-color: #beecf8;
+  overflow: hidden;
 }
 
-.facilities {
-    position: absolute;
-    left: 10px;
-    top: 50vh;
-    width: 350px;
-    height: 45vh;
+.facilities-window {
+  position: absolute;
+  left: 10px;
+  top: 40vh;
+  width: 350px;
+  height: 45vh;
+}
+
+.facilities-view {
+  position: absolute;
+  left: 430px;
+  right: 50px;
+  bottom: 40px;
+  height: 130px;
 }
