@@ -10,13 +10,6 @@ const Tools = () => {
   const images = [tipA, tipB, tipC];
 
   const buttonTest2 = () => {
-    (): void => {
-        if (userData) {
-             const fee=10*userData.tool_level;//この辺用改変
-            if(userData.money<fee){
-                alert("お金が足りません");
-                return;
-            }
     setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
   };
 
