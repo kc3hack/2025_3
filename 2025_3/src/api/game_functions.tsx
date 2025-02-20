@@ -73,10 +73,10 @@ export const useBuyFacility = () => {
     if (!facilityContext) {
         throw new Error("useBuyFacility must be used within a FacilityProvider");
     }
-    const { facility, setFacility } = facilityContext;
+    const { facility } = facilityContext;
     return (index: number): void => {
         if (userData && facility) {
-            const fee = facility[index].cost; //この辺用改変
+            const fee = Math.round(facility[index].cost * facility[index].magnification ** (userData.facility[index] - 1));
             if (userData.money < fee) {
                 alert("お金が足りません");
                 return;
@@ -90,9 +90,6 @@ export const useBuyFacility = () => {
             };
             setUserData(updatedUserData);
             localStorage.setItem('userData', JSON.stringify(updatedUserData));
-            const updatedFacilityData = [...facility];
-            updatedFacilityData[index].cost = Math.round(initialFacilities[index].cost * Math.pow(facility[index].magnification, updatedFacility[index]));
-            setFacility(updatedFacilityData);
         }
     };
 };

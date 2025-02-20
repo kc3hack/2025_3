@@ -21,12 +21,13 @@ function FacilitiesWindow() {
     facilityItems = facility.map((fac, idx) => {
       if (!facilityLevels) return null;
       const isLocked = facilityLevels![idx] === 0;
+      const cost = Math.round(fac.cost * fac.magnification ** (facilityLevels![idx] - 1));
       return (
         <ListItem className="facility-item" key={idx}>
           <ListItemButton
             className="facility-button"
             onClick={() => buyFacility(idx)}
-            disabled={isLocked || money! < fac.cost}
+            disabled={isLocked || money! < cost}
           >
             <div className="facility-info">
               <ListItemAvatar
@@ -46,7 +47,7 @@ function FacilitiesWindow() {
                 <>
                   {fac.name}
                   <br />
-                  {"¥" + fac.cost.toLocaleString()}
+                  {"¥" + cost.toLocaleString()}
                 </>
               )}
             </div>
