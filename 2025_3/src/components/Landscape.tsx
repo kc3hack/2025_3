@@ -48,7 +48,7 @@ function Landscape({statusValue}) {
   return (
     <>
         <div className="landscape">
-            <HeightScale elevation={elevation}/>
+            <HeightScale elevation={elevation} value={scaleValue}/>
           <div className="container">
             <div className="box scale">
               <div className="inner-container">
