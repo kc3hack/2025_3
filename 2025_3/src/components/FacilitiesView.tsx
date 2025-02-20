@@ -1,11 +1,12 @@
-import { useFacilityData } from "../api/game_functions";
+import { useFacilityData, useGetBenefit } from "../api/game_functions";
 import { useUserData } from "../api/context/get_edit";
 import "../css_designs/FacilitiesView.css";
-import { Button } from "@mui/material";
+import { Box, Button } from "@mui/material";
 
 function FacilitiesView() {
   const { facility } = useFacilityData();
   const facilityLevels = useUserData().userData?.facility;
+  const getBenefit = useGetBenefit();
   const itemSize = 100;
 
   let facilityItems = null;
@@ -15,10 +16,10 @@ function FacilitiesView() {
       if (facilityLevels![idx] === 0) return <div key={idx}></div>;
 
       const ratio_left = idx / (facility.length - 1);
-      const ratio_top =  (idx % 3) / 2;
+      const ratio_top = (idx % 3) / 2;
       const zIndex = idx % 3;
       return (
-        <Button
+        <Box
           key={idx}
           className="facility-button"
           sx={{
@@ -34,13 +35,37 @@ function FacilitiesView() {
             src={fac.img_path}
             alt={`${fac.name}の画像`}
           />
-        </Button>
+        </Box>
       );
     });
   }
 
+  let stockBarWidth = 0;
+  if (facility && facilityLevels) {
+    const [stockSum, maxStockSum] = facility.reduce(
+      ([stockSumAcc, maxStockSumAcc], fac, idx) => {
+        return [
+          stockSumAcc + Math.floor(fac.stock),
+          maxStockSumAcc + fac.efficiency * facilityLevels[idx] * 3600,
+        ];
+      },
+      [0, 0]
+    );
+    stockBarWidth = (stockSum / maxStockSum) * 100;
+  }
 
-  return <div className="facilities-view-area">{facilityItems}</div>;
+  return (
+    <div className="facilities-view-area">
+      {facilityItems}
+      <Box className="stock-bar-box">
+        <Box className="stock-bar-back" />
+        <Box className="stock-bar" sx={{ width: `${stockBarWidth}%` }} />
+        <Button className="stock-bar-label" onClick={getBenefit}>
+          収益
+        </Button>
+      </Box>
+    </div>
+  );
 }
 
 export default FacilitiesView;
