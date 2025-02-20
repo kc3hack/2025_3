@@ -16,7 +16,7 @@ import {
   useStockBenefit,
   useGetBenefit,
   useFacilityData,
-} from "../api/context/game_functions";
+} from "../api/game_functions";
 import FacilitiesWindow from "../components/FacilitiesWindow";
 import FacilitiesView from "../components/FacilitiesView";
 import { Box } from "@mui/material";

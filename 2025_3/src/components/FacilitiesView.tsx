@@ -1,4 +1,4 @@
-import { useFacilityData } from "../api/context/game_functions";
+import { useFacilityData } from "../api/game_functions";
 import { useUserData } from "../api/context/get_edit";
 import "../css_designs/FacilitiesView.css";
 import { Button } from "@mui/material";
