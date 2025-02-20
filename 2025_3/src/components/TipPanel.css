@@ -1,4 +1,5 @@
 .tipPanel-container {
+position: absolute;
   display: flex;
   flex-direction: column;
   background-color: rgb(8, 255, 181);
