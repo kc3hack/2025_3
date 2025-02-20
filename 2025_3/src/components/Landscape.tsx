@@ -18,19 +18,28 @@ function Landscape({statusValue}) {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const [elevation, setElevation] = useState<number>(0);
 
-  const incleaseScaleValue = 1;
+  const incleaseScaleValue = 18; 
 
   const handleButtonClick = () => {
     setElevation((prev) => {
-      const next = prev + incleaseScaleValue*10;
+      let next = prev + (incleaseScaleValue%10)*10;
+      if(next === 0 ){
+        next = prev + 100;
+      }
+      const buffer = 100-next;
+      if(buffer < 0){
+        next  = next - 100;
+      }
+      console.log(buffer+"buffer");
+      console.log(next+"next");
       // 最大値を超えたら0に戻す（または初期値にリセット）
-      return next > MAX_ELEVATION ? incleaseScaleValue*10 : next;
+      return next > MAX_ELEVATION ? (incleaseScaleValue%10)*10: next;
     });
     const newScaleValue = scaleValue + incleaseScaleValue;
     setScaleValue(newScaleValue);
     if (
       animationIndex < animationTriggers.length &&
-      newScaleValue === animationTriggers[animationIndex]
+      newScaleValue >= animationTriggers[animationIndex]
     ) {
        // 次のアニメーションのために目標値を更新
         setAnimationIndex((prevIndex) => prevIndex + 1);
