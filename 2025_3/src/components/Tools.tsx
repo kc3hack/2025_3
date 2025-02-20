@@ -3,12 +3,20 @@ import { useState } from "react";
 import tipA from "../assets/a.png";
 import tipB from "../assets/b.png";
 import tipC from "../assets/c.png";
+import { UserData } from '../api/dataType';
 
 const Tools = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const images = [tipA, tipB, tipC];
 
   const buttonTest2 = () => {
+    (): void => {
+        if (userData) {
+             const fee=10*userData.tool_level;//この辺用改変
+            if(userData.money<fee){
+                alert("お金が足りません");
+                return;
+            }
     setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
   };
 

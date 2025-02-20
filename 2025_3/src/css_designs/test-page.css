@@ -4,6 +4,12 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
+.testButton2{
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 .testDiv{
     position: absolute;
     background-color: #f1f1f1;
