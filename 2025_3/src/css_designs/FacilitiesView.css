@@ -35,7 +35,14 @@
   height: var(--height);
   border-radius: calc(var(--height) / 2);
   overflow: hidden;
+  transition: .1s;
 }
+
+.facilities-view-area .stock-bar-box:hover {
+  border: 1px solid #ffffff;
+  transition: .1s;
+}
+
 
 .facilities-view-area .stock-bar-back {
   position: absolute;
@@ -66,4 +73,11 @@
   font-size: 1.2em;
   color: #fddd0c;
   mix-blend-mode: difference;
+  transition: .1s;
+}
+
+.facilities-view-area .stock-bar-label:hover {
+  color: #ffffff;
+  mix-blend-mode: normal;
+  transition: .1s;
 }
