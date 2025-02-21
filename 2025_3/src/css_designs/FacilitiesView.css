@@ -3,7 +3,7 @@
   height: 100%;
 }
 
-.facilities-view-area .facility-button {
+.facilities-view-area .facility-box {
   position: absolute;
 }
 
@@ -60,6 +60,7 @@
 
 .facilities-view-area .stock-bar-label:hover {
   background-color: #00000020;
-  color: #EEEEEE;
+  color: #eeeeee;
   transition: .2s;
 }
+

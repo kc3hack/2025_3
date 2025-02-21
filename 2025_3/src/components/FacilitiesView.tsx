@@ -1,7 +1,8 @@
 import { useFacilityData, useGetBenefit } from "../api/game_functions";
 import { useUserData } from "../api/context/get_edit";
 import "../css_designs/FacilitiesView.css";
-import { Box, Button } from "@mui/material";
+import { Box, Button, Tooltip, Typography, Zoom } from "@mui/material";
+import HoverPopper from "./HoverPopper";
 
 function FacilitiesView() {
   const { facility } = useFacilityData();
@@ -21,7 +22,7 @@ function FacilitiesView() {
       return (
         <Box
           key={idx}
-          className="facility-button"
+          className="facility-box"
           sx={{
             left: `calc((100% - ${itemSize}px) * ${ratio_left})`,
             top: `calc((100% - ${itemSize}px) * ${ratio_top})`,
@@ -41,8 +42,9 @@ function FacilitiesView() {
   }
 
   let stockBarWidth = 0;
+  let [stockSum, maxStockSum] = [0, 0];
   if (facility && facilityLevels) {
-    const [stockSum, maxStockSum] = facility.reduce(
+    [stockSum, maxStockSum] = facility.reduce(
       ([stockSumAcc, maxStockSumAcc], fac, idx) => {
         return [
           stockSumAcc + Math.floor(fac.stock),
@@ -57,13 +59,30 @@ function FacilitiesView() {
   return (
     <div className="facilities-view-area">
       {facilityItems}
-      <Box className="stock-bar-box">
-        <Box className="stock-bar-back" />
-        <Box className="stock-bar" sx={{ width: `${stockBarWidth}%` }} />
-        <Button className="stock-bar-label" onClick={getBenefit}>
-          収益
-        </Button>
-      </Box>
+      <HoverPopper
+        title={
+          <>
+            <Typography>{`現在の収益: ¥${stockSum.toLocaleString()} / ¥${maxStockSum.toLocaleString()}`}</Typography>
+            <Typography
+              sx={{
+                fontSize: "0.8rem",
+                fontWeight: "bold",
+                textAlign: "center",
+              }}
+            >
+              バーをクリックして回収
+            </Typography>
+          </>
+        }
+      >
+        <Box className="stock-bar-box">
+          <Box className="stock-bar-back" />
+          <Box className="stock-bar" sx={{ width: `${stockBarWidth}%` }} />
+          <Button className="stock-bar-label" onClick={getBenefit}>
+            収益
+          </Button>
+        </Box>
+      </HoverPopper>
     </div>
   );
 }
