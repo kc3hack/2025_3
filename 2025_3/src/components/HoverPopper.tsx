@@ -14,6 +14,7 @@ function HoverPopper(props: TooltipProps) {
             backgroundColor: backgroundColor,
             color: color,
             borderRadius: 3,
+            minHeight: 48,
           },
         },
         arrow: {

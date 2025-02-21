@@ -5,10 +5,12 @@ import {
   ListItem,
   ListItemAvatar,
   ListItemButton,
+  Typography,
 } from "@mui/material";
 import "../css_designs/FacilitiesWindow.css";
 import { useMoney, useUserData } from "../api/context/get_edit";
 import { useBuyFacility, useFacilityData } from "../api/game_functions";
+import HoverPopper from "./HoverPopper";
 
 function FacilitiesWindow() {
   const money = useMoney();
@@ -25,7 +27,8 @@ function FacilitiesWindow() {
       const cost = Math.round(
         fac.cost * fac.magnification ** (facilityLevels![idx] - 1)
       );
-      return (
+
+      const listItems = (
         <ListItem className="facility-item" key={idx}>
           <ListItemButton
             className="facility-button"
@@ -62,6 +65,33 @@ function FacilitiesWindow() {
             )}
           </ListItemButton>
         </ListItem>
+      );
+
+      return isLocked ? (
+        listItems
+      ) : (
+        <HoverPopper
+          key={idx}
+          placement="right"
+          title={
+            <>
+              <Typography
+                sx={{
+                  fontSize: 20,
+                  textAlign: "center",
+                }}
+              >
+                {fac.name}
+              </Typography>
+              <Typography>{`現在の収益効率: ¥${(
+                fac.efficiency * facilityLevels[idx]
+              ).toLocaleString()} / 秒`}</Typography>
+              <Typography>{`次のレベルにするための費用: ¥${cost.toLocaleString()}`}</Typography>
+            </>
+          }
+        >
+          {listItems}
+        </HoverPopper>
       );
     });
   }

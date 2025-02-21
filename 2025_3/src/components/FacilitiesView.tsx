@@ -1,7 +1,7 @@
 import { useFacilityData, useGetBenefit } from "../api/game_functions";
 import { useUserData } from "../api/context/get_edit";
 import "../css_designs/FacilitiesView.css";
-import { Box, Button, Tooltip, Typography, Zoom } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import HoverPopper from "./HoverPopper";
 
 function FacilitiesView() {
