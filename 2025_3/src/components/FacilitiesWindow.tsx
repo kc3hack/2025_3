@@ -5,10 +5,12 @@ import {
   ListItem,
   ListItemAvatar,
   ListItemButton,
+  Typography,
 } from "@mui/material";
 import "../css_designs/FacilitiesWindow.css";
 import { useMoney, useUserData } from "../api/context/get_edit";
 import { useBuyFacility, useFacilityData } from "../api/game_functions";
+import HoverPopper from "./HoverPopper";
 
 function FacilitiesWindow() {
   const money = useMoney();
@@ -17,12 +19,16 @@ function FacilitiesWindow() {
   const buyFacility = useBuyFacility();
 
   let facilityItems = null;
-  if (facility){
+  if (facility) {
     facilityItems = facility.map((fac, idx) => {
       if (!facilityLevels) return null;
       const isLocked = facilityLevels![idx] === 0;
-      const cost = Math.round(fac.cost * fac.magnification ** (facilityLevels![idx] - 1));
-      return (
+      const isNext = isLocked && idx > 0 && facilityLevels![idx - 1] > 0;
+      const cost = Math.round(
+        fac.cost * fac.magnification ** (facilityLevels![idx] - 1)
+      );
+
+      const listItems = (
         <ListItem className="facility-item" key={idx}>
           <ListItemButton
             className="facility-button"
@@ -32,7 +38,8 @@ function FacilitiesWindow() {
             <div className="facility-info">
               <ListItemAvatar
                 sx={{
-                  filter: isLocked ? "brightness(0%) blur(3px)" : "none",
+                  filter:
+                    isLocked && !isNext ? "brightness(0%) blur(3px)" : "none",
                 }}
               >
                 <img
@@ -41,14 +48,16 @@ function FacilitiesWindow() {
                   alt={`${fac.name}の画像`}
                 />
               </ListItemAvatar>
-              {isLocked ? (
-                "？？？"
-              ) : (
+              {!isLocked ? (
                 <>
                   {fac.name}
                   <br />
                   {"¥" + cost.toLocaleString()}
                 </>
+              ) : isNext ? (
+                <>{fac.name}</>
+              ) : (
+                <>？？？</>
               )}
             </div>
             {!isLocked && (
@@ -57,9 +66,35 @@ function FacilitiesWindow() {
           </ListItemButton>
         </ListItem>
       );
+
+      return isLocked ? (
+        listItems
+      ) : (
+        <HoverPopper
+          key={idx}
+          placement="right"
+          title={
+            <>
+              <Typography
+                sx={{
+                  fontSize: 20,
+                  textAlign: "center",
+                }}
+              >
+                {fac.name}
+              </Typography>
+              <Typography>{`現在の収益効率: ¥${(
+                fac.efficiency * facilityLevels[idx]
+              ).toLocaleString()} / 秒`}</Typography>
+              <Typography>{`次のレベルにするための費用: ¥${cost.toLocaleString()}`}</Typography>
+            </>
+          }
+        >
+          {listItems}
+        </HoverPopper>
+      );
     });
   }
-
 
   return (
     <Box className="facilities-box">
