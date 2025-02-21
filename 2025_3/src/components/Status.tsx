@@ -1,3 +1,4 @@
+
 import "./Status.css";
 function Status({value}) {
   return (
@@ -6,4 +7,5 @@ function Status({value}) {
     </div>
   )
 }
+
 export default Status;

@@ -1,4 +1,4 @@
-import initialData from "./initialData.json";
+import initialData from "../../stores/initialData.json";
 import { UserData } from "../dataType";
 import { createUserData } from "../genUserData";
 import { createContext, useState, useEffect, ReactNode } from "react";
@@ -23,7 +23,7 @@ const UserDataProvider: React.FC<UserDataProviderProps> = ({ children }) => {
             setUserData(JSON.parse(storedData));
         } else {
             // initialData.jsonからデータを取得
-            const initialUserData: UserData = createUserData(
+            const initialUserData = createUserData(
                 initialData.id,
                 initialData.name,
                 initialData.sand,

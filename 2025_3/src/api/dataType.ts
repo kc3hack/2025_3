@@ -8,7 +8,8 @@ interface UserData {
     tool_level: number;// 道具のレベル
 }
 interface Landmark {// tipsで用いるランドマークの情報
-    length: number,      // 標高、全長、周長など
+    height: number,      // 標高、全長、周長など
+    markpoint: number,   // マークポイント
     name: string,        // 名前
     prefecture: string,  // 都道府県
     description: string, // 説明
@@ -22,6 +23,11 @@ interface Facility {
     magnification: number, // 倍率
     stock: number,      //収益のストック
 }
+interface Tool {
+    name: string,       // 名前
+    img_path: string,   // 画像のパス
+    minLevel: number,   // 最低レベル
+}
 
 
-export type { UserData, Landmark, Facility };
+export type { UserData, Landmark, Facility, Tool };

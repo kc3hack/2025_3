@@ -1,3 +1,4 @@
+
 import "./TipPanel.css"
 import tipA from "../assets/a.png";
 import tipB from "../assets/b.png";
@@ -14,6 +15,7 @@ function TipPanel({imageIndex,isFading}) {
                 <img src={images[imageIndex]} alt="Tip"className={`image`}/>
                 <h3 className="tipText">{tipsText[imageIndex]}</h3>
             </div>
+
         </div>
     );
 }

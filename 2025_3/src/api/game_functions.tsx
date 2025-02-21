@@ -1,7 +1,8 @@
 import { useContext } from 'react';
-import { UserDataContext } from './userData';
-import { FacilityContext } from './facility';
-import { UserData,Facility } from '../dataType';
+import { UserDataContext } from './context/userData';
+import { FacilityContext } from './context/facility';
+import { UserData,Facility } from './dataType';
+import initialFacilities from '../stores/inicialFacilities';
 
 // ユーザーデータを取得するカスタムフック
 export const useUserData = () => {
@@ -46,7 +47,7 @@ export const useCalcElevation = ()=> {
 //道具のlevelを上げる関数
 export const useTool_levelup = () => {
     const { userData, setUserData } = useUserData();
-   
+
     return (): void => {
         if (userData) {
              const fee=10*userData.tool_level;//この辺用改変
@@ -66,16 +67,16 @@ export const useTool_levelup = () => {
 }
 
 // 施設の購入を行える関数（配列の一部値を増減させる関数）
-export const useBuyFacility = (index: number) => {
+export const useBuyFacility = () => {
     const { userData, setUserData } = useUserData();
     const facilityContext = useContext(FacilityContext);
     if (!facilityContext) {
         throw new Error("useBuyFacility must be used within a FacilityProvider");
     }
     const { facility } = facilityContext;
-    return (): void => {
-        if (userData) {
-            const fee = facility[index].cost;//この辺用改変
+    return (index: number): void => {
+        if (userData && facility) {
+            const fee = Math.round(facility[index].cost * facility[index].magnification ** (userData.facility[index] - 1));
             if (userData.money < fee) {
                 alert("お金が足りません");
                 return;
@@ -103,11 +104,11 @@ export const useStockBenefit = () => {//こいつを毎秒実行する感じに�
     const { userData } = useUserData();
     const { facility, setFacility } = useFacilityData();
 
-    return (): void => {
+    return (deltaTime: number): void => {
         if (userData && facility) {
             const updatedFacility = facility.map((fac, index) => {
                 if (userData.facility[index] >= 1) {
-                    const increment = fac.efficiency * userData.facility[index];
+                    const increment = fac.efficiency * userData.facility[index] * deltaTime;
                     const maxStock = fac.efficiency * userData.facility[index] * 3600;
                     return {
                         ...fac,
@@ -118,10 +119,10 @@ export const useStockBenefit = () => {//こいつを毎秒実行する感じに�
             });
 
             setFacility(updatedFacility);
-            localStorage.setItem('facility', JSON.stringify(updatedFacility));
         }
     };
 };
+
 //施設の収益を受け取る関数
 export const useGetBenefit = () => {
     const { userData, setUserData } = useUserData();
@@ -131,17 +132,16 @@ export const useGetBenefit = () => {
             const updatedUserData = {
                 ...userData,
                 money: userData.money + facility.reduce((acc, fac, index) => {
-                    const benefit = fac.stock * fac.magnification;
+                    const benefit = Math.floor(fac.stock);
                     const updatedFacility = [...facility];
                     updatedFacility[index].stock = 0;
                     setFacility(updatedFacility);
-                    return acc + benefit;
+                    return Math.floor(acc + benefit);
                 }, 0),
             };
-            
+
             setUserData(updatedUserData);
             localStorage.setItem('userData', JSON.stringify(updatedUserData));
-            localStorage.setItem('facility', JSON.stringify(facility));
         }
     };
 }

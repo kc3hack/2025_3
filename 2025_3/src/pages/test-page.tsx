@@ -2,55 +2,119 @@ import "../css_designs/test-page.css";
 import { testfnc1 } from "../api/testfnc";
 import { UserDataContext } from "../api/context/userData";
 import { FacilityContext } from "../api/context/facility";
-import { useContext } from "react";
-import { useUserId, useSand, useEditSand, useMoney,useEditMoney } from "../api/context/get_edit";
-import { useBuyFacility,useStockBenefit,useGetBenefit } from "../api/context/game_functions";
+import { use, useContext, useEffect } from "react";
+import {
+  useUserId,
+  useSand,
+  useEditSand,
+  useMoney,
+  useEditMoney,
+  useUserData,
+  useLmHeights,
+  useLmDescriptions,
+  useTools,
+  useToolMinLevels
+} from "../api/context/get_edit";
+import {
+  useBuyFacility,
+  useStockBenefit,
+  useGetBenefit,
+  useFacilityData,
+} from "../api/game_functions";
+import FacilitiesWindow from "../components/FacilitiesWindow";
+import FacilitiesView from "../components/FacilitiesView";
+import { Box } from "@mui/material";
+import { Facility } from "../api/dataType";
+import initialFacilities from "../stores/inicialFacilities";
 
 const TestPage = () => {
   const sand = useSand();
   const money = useMoney();
-  const context = useContext(FacilityContext);
-  const userData = useContext(UserDataContext);
+  const { facility, setFacility } = useFacilityData();
+  const { userData, setUserData } = useUserData();
   const editSand = useEditSand();
   const editMoney = useEditMoney();
-  const buyFacility1 = useBuyFacility(1);
+  const buyFacility = useBuyFacility();
   const stockBenefit = useStockBenefit();
   const getBenefit = useGetBenefit();
+  const lmHeights = useLmHeights();
+  const lmDescriptions = useLmDescriptions();
+  const tools = useTools();
+  const toolMinLevels = useToolMinLevels();
 
-
-  const buttonTest = () => {
-    // if (typeof sand === "number") {
-    //   editSand(sand + 1); // 砂の量を1増やす
-    // }
+  const incrementMoneyTest = () => {
     if (typeof money === "number") {
-     editMoney(money + 1); // お金を1増やす
+      editMoney(money + 1); // お金を1増やす
     }
-    console.log(context);
-    console.log(userData);
+    console.log(lmHeights);
+    console.log(lmDescriptions);
+    console.log(tools);
+console.log(toolMinLevels);
   };
-  const buttonTest2 = () => {
-    //buyFacility1();
-    //stockBenefit();
+  const unlockTest = () => {
+    if (userData && userData.facility && setUserData) {
+      const newUserData = { ...userData };
+      for (let i = 0; i < userData.facility.length; i++) {
+        if (userData.facility[i] === 0) {
+          newUserData.facility[i] = 1;
+          break;
+        }
+      }
+      setUserData(newUserData);
+      localStorage.setItem("userData", JSON.stringify(newUserData));
+    }
+  };
+  const getBenefitTest = () => {
     getBenefit();
-    console.log(userData);
-  }
+  };
+  const reset = () => {
+    localStorage.removeItem("userData");
+    localStorage.removeItem("facility");
+    setFacility(initialFacilities);
+    window.location.reload();
+  };
 
-
+  // 60fpsのメインループ
+  useEffect(() => {
+    const interval = 1 / 60;
+    const intervalId = setInterval(() => {
+      if (userData && userData.facility && facility) {
+        stockBenefit(interval);
+     
+      }
+    }, interval * 1000);
+    return () => clearInterval(intervalId);
+  }, [userData, facility, stockBenefit]);
 
   return (
-    <>
-      <div className="testDiv Case3">div3
-        <div className="testDiv Case4">{sand}</div>
-        <div className="testDiv Case5">{money}</div>
-        <button className="testButton" onClick={buttonTest}>Click Me1</button>
-        <button className="testButton2" onClick={buttonTest2}>Click Me2</button>
-      </div> 
-      <div className="testDiv Case1">div1</div>
-      <div className="testDiv Case2">div2</div>
-    </>
+    <div className="test-page">
+      {"money: ¥" + money?.toLocaleString()}
+      <br />
+      <button onClick={incrementMoneyTest}>money++</button>
+      <br />
+      <button onClick={unlockTest}>unlock</button>
+      <br />
+      <button onClick={getBenefitTest}>get benefit</button>
+      <br />
+      <button onClick={reset}>reset</button>
+      <Box
+        className="ground"
+        sx={{
+          backgroundColor: "saddlebrown",
+          width: "100%",
+          height: "100px",
+          position: "absolute",
+          bottom: 0,
+        }}
+      />
+      <div className="facilities-window">
+        <FacilitiesWindow />
+      </div>
+      <div className="facilities-view">
+        <FacilitiesView />
+      </div>
+    </div>
   );
 };
 
 export default TestPage;
-
-
