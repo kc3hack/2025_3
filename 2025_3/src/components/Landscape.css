@@ -1,0 +1,77 @@
+.landscape {
+  display: grid;
+  position: relative;
+  width: 100vw; /* ビューポート全体の幅 */
+  height: 100vh; /* ビューポート全体の高さ */
+  grid-template-columns:25% 75%;
+  grid-template-rows: 25%   75%;
+  background-color: aqua;
+  gap: 0; 
+  grid-template-areas: 
+    "left-top right-big"
+    "left-bottom right-big";
+}
+
+
+
+.container {
+    grid-area: right-big;
+    display: flex;
+    /*
+    background-color: rgb(247, 247, 0);
+    border: 2px solid #333;
+    */
+    flex-direction: column; /* 縦方向に並ぶ */
+    height: 85%;/*コンテナの高さを決める */
+    
+  }
+
+ 
+.box {
+    flex: 0.5;
+    
+    display: flex;
+    /*
+    background-color: rgb(0, 0, 255);
+    border: 1px solid #000000;
+    */
+  }
+  
+.box.mountain {
+    flex: 3;
+    justify-content: center;
+    align-items: end;
+  }
+
+.box.tipPanel {
+    flex: 2;
+    position: relative;  
+    /*background-color: rgb(255, 7, 7);*/
+    justify-content: center;
+    align-items: start;
+  }
+
+.box.scale {
+    /*background-color: rgb(0, 255, 0);*/
+    align-items: center;
+    justify-items:start;
+  }
+
+.box.scale  .inner-container{
+    display: flex;
+    align-items: center;
+    width: auto;
+    min-width: 20%;
+  }
+
+  .inner-container :first-child{
+    height: 50px;
+    
+  }
+
+
+.box.status {
+    /*background-color: rgb(154, 86, 231);*/
+    align-items: center;
+    justify-items:start;
+  }

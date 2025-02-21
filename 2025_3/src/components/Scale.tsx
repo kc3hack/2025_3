@@ -1,8 +1,10 @@
-function Scale() {
+
+import "./Scale.css";
+function Scale( {value} ) {
   return (
-    <div>
-      <h1>Scale</h1>
-    </div>
+      <div className="scale-item">
+        {value}m
+      </div>
   );
 }
 
