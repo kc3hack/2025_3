@@ -100,25 +100,28 @@ export const useBuyFacility = () => {
    //userData.facilityの値が1以上のものに対して、facilityのefficiencyの値分だけstockの値を増やす
    //stockの値stockの値はFacilityのefficiencyの値にUserDataのfacilityの値をかけた値の3600倍以上にはならない
 
-export const useStockBenefit = () => {//こいつを毎秒実行する感じにする
+export const useStockBenefit = () => {//こいつをメインループに入れる
     const { userData } = useUserData();
-    const { facility, setFacility } = useFacilityData();
+    const { setFacility } = useFacilityData();
 
     return (deltaTime: number): void => {
-        if (userData && facility) {
-            const updatedFacility = facility.map((fac, index) => {
-                if (userData.facility[index] >= 1) {
-                    const increment = fac.efficiency * userData.facility[index] * deltaTime;
-                    const maxStock = fac.efficiency * userData.facility[index] * 3600;
-                    return {
-                        ...fac,
-                        stock: Math.min(fac.stock + increment, maxStock),
-                    };
+        if (userData && setFacility) {
+            setFacility((prev) => {
+                if (prev) {
+                    return prev.map((fac, index) => {
+                        if (userData.facility[index] >= 1) {
+                            const increment = fac.efficiency * userData.facility[index] * deltaTime;
+                            const maxStock = fac.efficiency * userData.facility[index] * 3600;
+                            return {
+                                ...fac,
+                                stock: Math.min(fac.stock + increment, maxStock),
+                            };
+                        }
+                        return fac;
+                    });
                 }
-                return fac;
+                return prev;
             });
-
-            setFacility(updatedFacility);
         }
     };
 };
