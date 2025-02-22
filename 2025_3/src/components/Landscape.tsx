@@ -12,45 +12,51 @@ import {
   useEditElevation,
 } from "../api/context/get_edit";
 
+import{
+  useCalcElevation,   
+}from "../api/game_functions";
+
 const MAX_ELEVATION = 100;
 
 function Landscape({statusValue,tipsHeightList}: {statusValue:number,tipsHeightList:number[]}) {
   const scale = useElevation();
   const sand = useSand();
+  const calcElevation = useCalcElevation();
   const editSand = useEditSand();
+  const editElevation = useEditElevation();
   const animationTriggers = tipsHeightList;
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
   const [animationIndex, setAnimationIndex] = useState<number>(0);
-  const [scaleValue, setScaleValue] = useState<number>(4);
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const [elevation, setElevation] = useState<number>(0);
-
-  const incleaseScaleValue = 1; 
 
   const handleButtonClick = () => {
     setElevation((prev) => {
       if (typeof sand === "number") {
-        editSand(sand + 1); // 砂を1増やす
+        editSand(sand + 100); // 砂を1増やす
+        calcElevation();
       }
-      let next = prev + (incleaseScaleValue%10)*10;
+      
+      let next = (scale%10)*10;
       if(next === 0 ){
-        next = prev + 100;
+        next = 100;
       }
       const buffer = 100-next;
       if(buffer < 0){
         next  = next - 100;
       }
+      console.log(scale+"scale"); 
+      console.log(sand+"sand");
       console.log(buffer+"buffer");
       console.log(next+"next");
       // 最大値を超えたら0に戻す（または初期値にリセット）
-      return next > MAX_ELEVATION ? (incleaseScaleValue%10)*10: next;
+      return next > MAX_ELEVATION ? (scale%10)*10: next;
     });
-    const newScaleValue = scaleValue + incleaseScaleValue;
-    setScaleValue(newScaleValue);
+
     if (
       animationIndex < animationTriggers.length &&
-      newScaleValue >= animationTriggers[animationIndex]
+      scale >= animationTriggers[animationIndex]
     ) {
        // 次のアニメーションのために目標値を更新
         setAnimationIndex((prevIndex) => prevIndex + 1);
