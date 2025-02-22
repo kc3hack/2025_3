@@ -24,7 +24,7 @@ export const useFacilityData = () => {
 //道具のlevelの値の分だけ土砂の量を増やす関数
 export const useAddSand = () => {
     const { userData, setUserData } = useUserData();
-    return (): void => {
+    return (): number => {
         if (userData) {
             const newSand = userData.sand + (userData.tool_level);//この辺用改変
             // const newElevation = Math.cbrt(newSand);
@@ -32,7 +32,9 @@ export const useAddSand = () => {
             const updatedUserData = { ...userData, sand: newSand, elevation: newElevation };//この辺用改変
             setUserData(updatedUserData);
             localStorage.setItem('userData', JSON.stringify(updatedUserData));
+            return newElevation;
         }
+        return 0;
     };
 };
 //土砂の値から標高を算出し代入する関数(今回は土砂の量の三乗根を標高とする)
@@ -73,6 +75,24 @@ export const useTool_levelup = () => {
             };
             setUserData(updatedUserData);
             localStorage.setItem('userData', JSON.stringify(updatedUserData));
+        }
+    };
+}
+
+// 施設をアンロックする関数
+export const useUnlockFacility = () => {
+    const { userData, setUserData } = useUserData();
+    return (idx: number): void => {
+        if (userData) {
+            setUserData((prev) => {
+                if (prev) {
+                    const updatedUserData = {...prev,};
+                    updatedUserData.facility[idx] = 1;
+                    localStorage.setItem('userData', JSON.stringify(updatedUserData));
+                    return updatedUserData;
+                }
+                return prev;
+            });
         }
     };
 }
