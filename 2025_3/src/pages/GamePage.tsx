@@ -39,6 +39,7 @@ function GamePage() {
 
   return (
     <div className="game-page">
+
       <Landscape statusValue={Money} />
       <div className="facilities-window">
         <FacilitiesWindow />
@@ -50,6 +51,7 @@ function GamePage() {
         localStorage.removeItem("userData");
         window.location.reload();
       }}>reset</button>
+            <Menu />
     </div>
   );
 }
