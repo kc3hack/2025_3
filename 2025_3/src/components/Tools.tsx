@@ -1,38 +1,47 @@
 import "../components/Tools.css";
 import { useState } from "react";
-import tipA from "../assets/a.png";
-import tipB from "../assets/b.png";
-import tipC from "../assets/c.png";
-import { UserData } from '../api/dataType';
+import { useMoney, useUserData } from "../api/context/get_edit";
+import { useTool_levelup } from "../api/context/game_functions";
+import a from "../src/assets/a.png"
 
 const Tools = () => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const images = [tipA, tipB, tipC];
+    const money = useMoney();
+    const tool_level = useUserData().userData?.tool_level;
+    const buyTool = useTool_levelup();
 
-  const buttonTest2 = () => {
+    // cost の宣言を関数のスコープ内に移動
+    let cost = null;
 
-    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-  };
-  
-  return (
-    <>
-      <div className="testDiv Case2">
-        div2
-        <div className="testDiv11 ">
-          ➡
+    if (tool_level) { // tool_level が null でない場合に cost を計算
+        cost = Math.round(10 * tool_level);
+    } else {
+        return null; // tool_level が null の場合は何も表示しない
+    }
+
+    // cost が計算できなかった場合も考慮
+    if (cost === null) {
+      return null;
+    }
+
+    return (
+        <div className="testDiv Case2">
+            div2
+            <div className="testDiv Case7">
+                <img src={a} alt="スコップ" /> {/* alt 属性を追加 */}
+            </div>
+            <div className="tool_level">Lv.{tool_level}</div>
+            スコップ
+            <br />
+            {"¥" + cost.toLocaleString()}
+            <button
+                className="button2"
+                onClick={() => buyTool(/* 必要な引数を渡す */)} // 引数を渡す
+                disabled={money === null || money < cost} // money が null の場合も考慮
+            >
+                Change Image
+            </button>
         </div>
-        <div className="testDiv Case6">
-          <img src={images[currentImageIndex]} alt="画像1" />
-        </div>
-        <div className="testDiv Case7">
-          <img src={images[(currentImageIndex + 1) % images.length]} alt="画像2" />
-        </div>
-        <button className="testButton" onClick={buttonTest2}>
-          Change Image
-        </button>
-      </div>
-    </>
-  );
+    );
 };
 
-export default Tools;
+export default Tools; // Toolsコンポーネントをexport
