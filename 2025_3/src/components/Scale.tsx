@@ -1,10 +1,10 @@
-
 import "./Scale.css";
-function Scale( {value} ) {
+
+function Scale({ value }) {
   return (
-      <div className="scale-item">
-        {value}m
-      </div>
+    <div className="scale-item">
+      {value.toFixed(1)}m
+    </div>
   );
 }
 

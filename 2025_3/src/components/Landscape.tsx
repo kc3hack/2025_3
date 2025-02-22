@@ -19,7 +19,7 @@ import{
 const MAX_ELEVATION = 100;
 
 function Landscape({statusValue,tipsHeightList}: {statusValue:number,tipsHeightList:number[]}) {
-  const scale = useElevation();
+  let scale = useElevation()||4;
   const sand = useSand();
   const calcElevation = useCalcElevation();
   const editSand = useEditSand();
@@ -34,22 +34,24 @@ function Landscape({statusValue,tipsHeightList}: {statusValue:number,tipsHeightL
   const handleButtonClick = () => {
     setElevation((prev) => {
       if (typeof sand === "number") {
-        editSand(sand + 100); // 砂を1増やす
-        
+        editSand(sand + 12800); // 砂を1増やす
+        calcElevation();
+        scale = useElevation()||4;
       }
-      calcElevation();
       let next = (scale%10)*10;
       if(next === 0 ){
         next = 100;
       }
       const buffer = 100-next;
-      if(buffer < 0){
+      if(buffer <= 0){
         next  = next - 100;
       }
       console.log(scale+"scale"); 
       console.log(sand+"sand");
+      console.log(next+"next");
+      console.log(buffer+"buffer");
       // 最大値を超えたら0に戻す（または初期値にリセット）
-      return next > MAX_ELEVATION ? (scale%10)*10: next;
+      return next >= MAX_ELEVATION ? (scale%10)*10: next;
     });
 
     if (
