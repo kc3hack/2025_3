@@ -39,10 +39,6 @@ function GamePage() {
 
   return (
     <div className="game-page">
-      <button onClick={() => { // デバッグ用リセットボタン
-        localStorage.removeItem("userData");
-        window.location.reload();
-      }}>reset</button>
       <Landscape statusValue={Money} />
       <div className="facilities-window">
         <FacilitiesWindow />
@@ -50,6 +46,10 @@ function GamePage() {
       <div className="facilities-view">
         <FacilitiesView />
       </div>
+      <button style={{position: "absolute"}} onClick={() => { // デバッグ用リセットボタン
+        localStorage.removeItem("userData");
+        window.location.reload();
+      }}>reset</button>
     </div>
   );
 }

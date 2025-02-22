@@ -1,6 +1,8 @@
 .landscape {
   display: grid;
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100vw; /* ビューポート全体の幅 */
   height: 100vh; /* ビューポート全体の高さ */
   grid-template-columns:25% 75%;
