@@ -80,9 +80,15 @@ export const useEditSand = () => {
     const { userData, setUserData } = useUserData();
     return (newSand: number): void => {
         if (userData) {
-            const updatedUserData = { ...userData, sand: newSand };
-            setUserData(updatedUserData);
-            localStorage.setItem('userData', JSON.stringify(updatedUserData));
+            setUserData((prev) => {
+                if (prev) {
+                    const updatedUserData = { ...prev, sand: newSand };
+                    localStorage.setItem('userData', JSON.stringify(updatedUserData));
+                    return updatedUserData;
+                }
+                return prev;
+            }
+            );
         }
     };
 };

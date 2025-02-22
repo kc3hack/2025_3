@@ -38,9 +38,17 @@ export const useCalcElevation = ()=> {
    // return userData ? Math.cbrt(userData.sand) : null;
       return (): void => {
         if (userData) {
-            const updatedUserData = { ...userData, elevation: Math.cbrt(userData.sand) };//この辺用改変
-            setUserData(updatedUserData);
-            localStorage.setItem('userData', JSON.stringify(updatedUserData));
+            setUserData((prev) => {
+                if (prev) {
+                    const updatedUserData = {
+                        ...prev,
+                        elevation: Math.cbrt(prev.sand), // ここを変更
+                    };
+                    localStorage.setItem('userData', JSON.stringify(updatedUserData));
+                    return updatedUserData;
+                }
+                return prev;
+            });
         }
     };
 }
