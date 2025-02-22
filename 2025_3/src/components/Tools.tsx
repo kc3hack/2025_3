@@ -10,9 +10,10 @@ const Tools = () => {
   const images = [tipA, tipB, tipC];
 
   const buttonTest2 = () => {
+
     setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
   };
-
+  
   return (
     <>
       <div className="testDiv Case2">

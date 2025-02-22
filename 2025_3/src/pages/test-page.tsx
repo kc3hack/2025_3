@@ -5,6 +5,7 @@ import { FacilityContext } from "../api/context/facility";
 import { useContext } from "react";
 import { useUserId, useSand, useEditSand, useMoney,useEditMoney } from "../api/context/get_edit";
 import { useBuyFacility,useStockBenefit,useGetBenefit } from "../api/context/game_functions";
+import  Tools  from "../api/context/game_functions";
 
 const TestPage = () => {
   const sand = useSand();
@@ -47,6 +48,7 @@ const TestPage = () => {
       </div> 
       <div className="testDiv Case1">div1</div>
       <div className="testDiv Case2">div2</div>
+      <Tools />
     </>
   );
 };

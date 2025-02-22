@@ -1,0 +1,61 @@
+.testButton{
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.testButton2{
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.testDiv{
+    position: absolute;
+    background-color: #f1f1f1;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 10px;
+color: rgb(0, 0, 0);
+    padding: 10px;
+    box-shadow: 5px 5px 5px #888888;
+}
+.testDiv.Case1{
+        top: 70%;
+            left: 15%;
+            transform: translate(-50%, -50%);
+            width: 15%;
+            height: 30%;
+    text-align: center;
+}
+.testDiv.Case2{
+        top: 30%;
+            left: 15%;
+            transform: translate(-50%, -50%);
+            width: 20%;
+            height: 30%;
+    text-align: center;
+}
+.testDiv.Case3{
+        top: 0%;
+            left: 60%;
+            transform: translate(-50%, 0%);
+            width: 70%;
+            height: 90%;
+    text-align: center;
+}
+.testDiv.Case6{
+        top: 0%;
+            left: 0%;
+            transform: translate(0%, 0%);
+            width: 40%;
+            height: 60%;
+    text-align: center;
+}
+.testDiv.Case7{
+        top: 0%;
+            right: 0%;
+            transform: translate(0%, 0%);
+            width: 40%;
+            height: 60%;
+    text-align: center;
+}

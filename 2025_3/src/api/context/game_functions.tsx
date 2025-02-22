@@ -47,12 +47,13 @@ export const useCalcElevation = ()=> {
 export const useTool_levelup = () => {
     const { userData, setUserData } = useUserData();
    
-    return (): void => {
+    return () => {
         if (userData) {
              const fee=10*userData.tool_level;//この辺用改変
             if(userData.money<fee){
                 alert("お金が足りません");
-                return;
+                return false
+                
             }
             const updatedUserData = {
                 ...userData,
@@ -61,6 +62,7 @@ export const useTool_levelup = () => {
             };
             setUserData(updatedUserData);
             localStorage.setItem('userData', JSON.stringify(updatedUserData));
+            return true
         }
     };
 }
@@ -145,3 +147,55 @@ export const useGetBenefit = () => {
         }
     };
 }
+
+import "../src/components/Tools.css";
+import { useState } from "react";
+import tipA from "../src/assets/a.png";
+import tipB from "../src/assets/b.png";
+import tipC from "../src/assets/c.png";
+
+export const Tools = () => {
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const images = [tipA, tipB, tipC];
+    const { userData, setUserData } = useUserData();
+    const buttonTest2 = () => {
+        if (userData) {
+             const fee=10*userData.tool_level;//この辺用改変
+            if(userData.money<fee){
+                alert("お金が足りません");
+                return 
+                
+            }
+            const updatedUserData = {
+                ...userData,
+                money: userData.money - fee,
+                tool_level: userData.tool_level + 1
+            };
+            setUserData(updatedUserData);
+            localStorage.setItem('userData', JSON.stringify(updatedUserData));
+
+            setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+            };
+          };
+  
+    return (
+      <>
+        <div className="testDiv Case2">
+          div2
+          <div className="testDiv11 ">
+            ➡
+          </div>
+          <div className="testDiv Case6">
+            <img src={images[currentImageIndex]} alt="画像1" />
+          </div>
+          <div className="testDiv Case7">
+            <img src={images[(currentImageIndex + 1) % images.length]} alt="画像2" />
+          </div>
+          <button className="testButton" onClick={buttonTest2}>
+            Change Image
+          </button>
+        </div>
+      </>
+    );
+}
+export default Tools;
