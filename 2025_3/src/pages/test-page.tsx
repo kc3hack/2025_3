@@ -69,22 +69,27 @@ console.log(toolMinLevels);
   };
   const reset = () => {
     localStorage.removeItem("userData");
-    localStorage.removeItem("facility");
     setFacility(initialFacilities);
     window.location.reload();
   };
 
-  // 60fpsのメインループ
+  const dataLoaded = userData !== null && facility !== null;
+
+  // requestAnimationFrame を使ったメインループ
   useEffect(() => {
-    const interval = 1 / 60;
-    const intervalId = setInterval(() => {
-      if (userData && userData.facility && facility) {
-        stockBenefit(interval);
-     
+    let requestId: number;
+    let prevTimestamp: number | null = null;
+    function step(timestamp: DOMHighResTimeStamp) {
+      if (prevTimestamp) {
+        const deltaTime = (timestamp - prevTimestamp) / 1000;
+        stockBenefit(deltaTime);
       }
-    }, interval * 1000);
-    return () => clearInterval(intervalId);
-  }, [userData, facility, stockBenefit]);
+      prevTimestamp = timestamp;
+      requestId = requestAnimationFrame(step);
+    }
+    requestId = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(requestId);
+  }, [dataLoaded, userData?.facility]);
 
   return (
     <div className="test-page">
