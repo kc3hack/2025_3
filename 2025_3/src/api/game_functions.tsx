@@ -26,7 +26,9 @@ export const useAddSand = () => {
     const { userData, setUserData } = useUserData();
     return (): void => {
         if (userData) {
-            const updatedUserData = { ...userData, sand: userData.sand + userData.tool_level };//この辺用改変
+            const newSand = userData.sand + (userData.tool_level);//この辺用改変
+            const newElevation = Math.cbrt(newSand);
+            const updatedUserData = { ...userData, sand: newSand, elevation: newElevation };//この辺用改変
             setUserData(updatedUserData);
             localStorage.setItem('userData', JSON.stringify(updatedUserData));
         }

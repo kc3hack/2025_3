@@ -14,6 +14,7 @@ import {
 
 import{
   useCalcElevation,   
+  useAddSand,
 }from "../api/game_functions";
 
 const MAX_ELEVATION = 100;
@@ -24,6 +25,7 @@ function Landscape({statusValue,tipsHeightList}: {statusValue:number,tipsHeightL
   const calcElevation = useCalcElevation();
   const editSand = useEditSand();
   const editElevation = useEditElevation();
+  const addSand = useAddSand();
   const animationTriggers = tipsHeightList;
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
