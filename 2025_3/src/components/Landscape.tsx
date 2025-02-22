@@ -13,14 +13,14 @@ import {
 } from "../api/context/get_edit";
 
 import{
-  useCalcElevation,   
+  useCalcElevation,
   useAddSand,
 }from "../api/game_functions";
 
 const MAX_ELEVATION = 100;
 
 function Landscape({statusValue,tipsHeightList}: {statusValue:number,tipsHeightList:number[]}) {
-  let scale = useElevation()||4;
+  const scale = useElevation()||4;
   const sand = useSand();
   const calcElevation = useCalcElevation();
   const editSand = useEditSand();
@@ -38,7 +38,7 @@ function Landscape({statusValue,tipsHeightList}: {statusValue:number,tipsHeightL
       if (typeof sand === "number") {
         editSand(sand + 12800); // 砂を1増やす
         calcElevation();
-        scale = useElevation()||4;
+        // scale = useElevation()||4;
       }
       let next = (scale%10)*10;
       if(next === 0 ){
@@ -48,7 +48,7 @@ function Landscape({statusValue,tipsHeightList}: {statusValue:number,tipsHeightL
       if(buffer <= 0){
         next  = next - 100;
       }
-      console.log(scale+"scale"); 
+      console.log(scale+"scale");
       console.log(sand+"sand");
       console.log(next+"next");
       console.log(buffer+"buffer");
@@ -93,6 +93,7 @@ function Landscape({statusValue,tipsHeightList}: {statusValue:number,tipsHeightL
               <Mountain onButtonClick={handleButtonClick}/>
             </div>
           </div>
+          <div className="ground" />
         </div>
     </>
   );
