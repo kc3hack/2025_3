@@ -27,11 +27,12 @@ const Tools = () => {
         <div className="testDiv Case2">
             div2
             <div className="testDiv Case7">
-                <img src={a} alt="スコップ" /> {/* alt 属性を追加 */}
+              aa
             </div>
-            <div className="tool_level">Lv.{tool_level}</div>
+            <div className="tool_level">
             スコップ
-            <br />
+            <br />Lv.{tool_level}</div>
+
             {"¥" + cost.toLocaleString()}
             <button
                 className="button2"
