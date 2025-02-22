@@ -3,7 +3,7 @@ import Mountain from "./Mountain";
 import Scale from "./Scale";
 import Status from "./Status";
 import TipPanel from "./TipPanel";
-import "./Landscape.css";
+import "../css_designs/Landscape.css";
 import HeightScale from "./HeightScale";
 import { useElevation, useLmHeights } from "../api/context/get_edit";
 import { useAddSand, useUnlockFacility } from "../api/game_functions";

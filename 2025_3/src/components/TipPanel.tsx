@@ -1,5 +1,5 @@
 
-import "./TipPanel.css"
+import "../css_designs/TipPanel.css";
 import tipA from "../assets/a.png";
 import tipB from "../assets/b.png";
 import tipC from "../assets/c.png";

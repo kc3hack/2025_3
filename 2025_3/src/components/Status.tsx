@@ -1,5 +1,5 @@
 
-import "./Status.css";
+import "../css_designs/Status.css";
 function Status({value}) {
   return (
     <div className="status-item">

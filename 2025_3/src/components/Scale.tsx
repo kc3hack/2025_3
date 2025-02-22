@@ -1,4 +1,4 @@
-import "./Scale.css";
+import "../css_designs/Scale.css";
 
 function Scale({ value }) {
   return (

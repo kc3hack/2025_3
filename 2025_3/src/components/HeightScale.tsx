@@ -1,4 +1,4 @@
-import "./HeightScale.css";
+import "../css_designs/HeightScale.css";
 
 function HeightScale({ elevation, value }) {
   // それぞれの横線の表示値を計算

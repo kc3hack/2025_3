@@ -1,5 +1,5 @@
 import React from "react";
-import "./Mountain.css";
+import "../css_designs/Mountain.css";
 function Mountain({ onButtonClick }) {
   return (
     <div className="mountain-container">
