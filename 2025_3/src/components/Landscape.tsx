@@ -35,9 +35,9 @@ function Landscape({statusValue,tipsHeightList}: {statusValue:number,tipsHeightL
     setElevation((prev) => {
       if (typeof sand === "number") {
         editSand(sand + 100); // 砂を1増やす
-        calcElevation();
+        
       }
-      
+      calcElevation();
       let next = (scale%10)*10;
       if(next === 0 ){
         next = 100;
@@ -48,8 +48,6 @@ function Landscape({statusValue,tipsHeightList}: {statusValue:number,tipsHeightL
       }
       console.log(scale+"scale"); 
       console.log(sand+"sand");
-      console.log(buffer+"buffer");
-      console.log(next+"next");
       // 最大値を超えたら0に戻す（または初期値にリセット）
       return next > MAX_ELEVATION ? (scale%10)*10: next;
     });
