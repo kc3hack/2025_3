@@ -21,11 +21,10 @@ function Landscape({ statusValue }: { statusValue: number }) {
   const unlockFacility = useUnlockFacility();
 
   const handleButtonClick = () => {
-    console.log("mountain clicked");
     if (scale === null) return;
     const newScale = addSand();
     setElevation((prev) => {
-      let next = (scale % 10) * 10;
+      let next = (newScale % 10) * 10;
       if (next === 0) {
         next = 100;
       }
@@ -34,7 +33,7 @@ function Landscape({ statusValue }: { statusValue: number }) {
         next = next - 100;
       }
       // 最大値を超えたら0に戻す（または初期値にリセット）
-      return next >= MAX_ELEVATION ? (scale % 10) * 10 : next;
+      return next >= MAX_ELEVATION ? (newScale % 10) * 10 : next;
     });
 
     // ランドマークの標高を超えたとき
