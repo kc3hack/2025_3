@@ -14,6 +14,7 @@ import {
 
 import{
   useCalcElevation,   
+  useAddSand,
 }from "../api/game_functions";
 
 const MAX_ELEVATION = 100;
@@ -24,6 +25,7 @@ function Landscape({statusValue,tipsHeightList}: {statusValue:number,tipsHeightL
   const calcElevation = useCalcElevation();
   const editSand = useEditSand();
   const editElevation = useEditElevation();
+  const addSand = useAddSand();
   const animationTriggers = tipsHeightList;
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
@@ -32,26 +34,29 @@ function Landscape({statusValue,tipsHeightList}: {statusValue:number,tipsHeightL
   const [elevation, setElevation] = useState<number>(0);
 
   const handleButtonClick = () => {
-    setElevation((prev) => {
-      if (typeof sand === "number") {
-        editSand(sand + 100); // 砂を1増やす
+    // setElevation((prev) => {
+    //   if (typeof sand === "number") {
+    //     editSand(sand + 100); // 砂を1増やす
         
-      }
-      calcElevation();
-      let next = (scale%10)*10;
-      if(next === 0 ){
-        next = 100;
-      }
-      const buffer = 100-next;
-      if(buffer < 0){
-        next  = next - 100;
-      }
-      console.log(scale+"scale"); 
-      console.log(sand+"sand");
-      // 最大値を超えたら0に戻す（または初期値にリセット）
-      return next > MAX_ELEVATION ? (scale%10)*10: next;
-    });
-
+    //   }
+    //   calcElevation();
+    //   let next = (scale%10)*10;
+    //   if(next === 0 ){
+    //     next = 100;
+    //   }
+    //   const buffer = 100-next;
+    //   if(buffer < 0){
+    //     next  = next - 100;
+    //   }
+    //   console.log(scale+"scale"); 
+    //   console.log(sand+"sand");
+    //   // 最大値を超えたら0に戻す（または初期値にリセット）
+    //   return next > MAX_ELEVATION ? (scale%10)*10: next;
+    // });
+//editSand(sand + 100); // 砂を1増やす
+   // calcElevation();
+   addSand();
+    console.log(sand);
     if (
       animationIndex < animationTriggers.length &&
       scale >= animationTriggers[animationIndex]
