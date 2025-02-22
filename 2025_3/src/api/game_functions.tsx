@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { UserDataContext } from './context/userData';
 import { FacilityContext } from './context/facility';
 import { UserData,Facility } from './dataType';
-import initialFacilities from '../stores/inicialFacilities';
+import initialFacilities from '../stores/initialFacilities';
 
 // ユーザーデータを取得するカスタムフック
 export const useUserData = () => {
