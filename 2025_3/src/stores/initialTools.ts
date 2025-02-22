@@ -17,10 +17,20 @@ const initialTools: Tool[] = [
     minLevel: 2,
   },
   {
+    name: "バケツ",
+    img_path: "../../img/tools/bucket_iron_empty_down.png",
+    minLevel: 3,
+  },
+  {
+    name: "手押し車",
+    img_path: "../../img/tools/ichirin_teoshiguruma.png",
+    minLevel: 4,
+  },
+  {
     name: "ブルドーザー",
     img_path: "../../img/tools/car_bulldozer.png",
-    minLevel: 3,
-  }
+    minLevel: 5,
+  },
 ];
 
 export default initialTools;
