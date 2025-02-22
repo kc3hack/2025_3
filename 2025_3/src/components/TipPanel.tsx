@@ -1,28 +1,51 @@
-
 import "../css_designs/TipPanel.css";
-import tipA from "../assets/a.png";
-import tipB from "../assets/b.png";
-import tipC from "../assets/c.png";
-import{
-    useLmNames,
-    useLmDescriptions,
-    useLmImgPaths,
-}from "../api/context/get_edit";
+import {
+  useLmNames,
+  useLmDescriptions,
+  useLmImgPaths,
+  useLmHeights,
+} from "../api/context/get_edit";
+import { useFacilityData } from "../api/game_functions";
 
-function TipPanel({imageIndex,isFading}) {
-    const images = useLmImgPaths() || [tipA,tipB,tipC];
-    const tipsTitles = useLmNames() || ["TipA","TipB","TipC"];
-    const tipsText =useLmDescriptions() || ["TipA","TipB","TipC"];
-    return (
-        <div className= {`tipPanel-container ${isFading ? "fade-out" : "fade-in"}`}>
-                <div className="tipsTitle">{tipsTitles[imageIndex]}</div>
-            <div className="tipText-container">
-                <img src={images[imageIndex]} alt="Tip"className={`image`}/>
-                <h3 className="tipText">{tipsText[imageIndex]}</h3>
-            </div>
-
-        </div>
-    );
+function TipPanel({ imageIndex, isFading }) {
+  const images = useLmImgPaths();
+  const tipsTitles = useLmNames();
+  const tipsText = useLmDescriptions();
+  const tipsHeights = useLmHeights();
+  const { facility } = useFacilityData();
+  if (
+    images === null ||
+    tipsTitles === null ||
+    tipsText === null ||
+    tipsHeights === null ||
+    facility === null
+  ) {
+    return null;
+  }
+  return (
+    <div className={`tip-container ${isFading ? "fade-out" : "fade-in"}`}>
+      <p className="tip-title">
+        {`${tipsTitles[imageIndex]}
+        (${
+          tipsHeights[imageIndex] && tipsHeights[imageIndex].toLocaleString()
+        }m)`}
+      </p>
+      <hr className="tip-divider" />
+      <div className="tip-content">
+        <img
+          className="tip-image"
+          src={images[imageIndex]}
+          alt={`${tipsTitles[imageIndex]}の画像`}
+        />
+        <p className="tip-text">{tipsText[imageIndex]}</p>
+      </div>
+      <hr className="tip-divider" />
+      <p className="tip-unlock">
+        <b>{facility[imageIndex] && facility[imageIndex + 1].name}</b>
+        &nbsp;がアンロックされました
+      </p>
+    </div>
+  );
 }
 
 export default TipPanel;
