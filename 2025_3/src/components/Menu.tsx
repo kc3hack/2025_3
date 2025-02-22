@@ -31,8 +31,8 @@ function Menu() {
       {isVisible && userData && (
         <div className="user-data-window">
           <h2>{userData.name}'s Data</h2>
+          <hr />
           <ul>
-            <li>ID: {userData.id}</li>
             <li>
               Name: {userData.name}
               <input 
