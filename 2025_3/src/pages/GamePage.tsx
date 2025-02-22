@@ -18,7 +18,6 @@ function GamePage() {
   const { userData } = useUserData();
   const { facility } = useFacilityData();
   const stockBenefit = useStockBenefit();
-  const LmHeights = useLmHeights() || [];
   const Money = useMoney() ?? 0;
 
   // requestAnimationFrame を使ったメインループ
@@ -44,7 +43,7 @@ function GamePage() {
         localStorage.removeItem("userData");
         window.location.reload();
       }}>reset</button>
-      <Landscape statusValue={Money} tipsHeightList={LmHeights} />
+      <Landscape statusValue={Money} />
       <div className="facilities-window">
         <FacilitiesWindow />
       </div>
