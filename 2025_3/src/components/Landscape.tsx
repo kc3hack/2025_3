@@ -5,16 +5,24 @@ import Status from "./Status";
 import TipPanel from "./TipPanel";
 import "./Landscape.css";
 import HeightScale from "./HeightScale";
+import {
+  useSand,
+  useEditSand,
+  useElevation,
+  useEditElevation,
+} from "../api/context/get_edit";
 
 const MAX_ELEVATION = 100;
 
-function Landscape({statusValue}) {
- 
-  const animationTriggers = [10, 20 ,30];
+function Landscape({statusValue,tipsHeightList}: {statusValue:number,tipsHeightList:number[]}) {
+  const scale = useElevation();
+  const sand = useSand();
+  const editSand = useEditSand();
+  const animationTriggers = tipsHeightList;
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
 
   const [animationIndex, setAnimationIndex] = useState<number>(0);
-  const [scaleValue, setScaleValue] = useState(0);
-  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [scaleValue, setScaleValue] = useState<number>(4);
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const [elevation, setElevation] = useState<number>(0);
 
@@ -22,6 +30,9 @@ function Landscape({statusValue}) {
 
   const handleButtonClick = () => {
     setElevation((prev) => {
+      if (typeof sand === "number") {
+        editSand(sand + 1); // 砂を1増やす
+      }
       let next = prev + (incleaseScaleValue%10)*10;
       if(next === 0 ){
         next = prev + 100;
@@ -57,11 +68,11 @@ function Landscape({statusValue}) {
   return (
     <>
         <div className="landscape">
-            <HeightScale elevation={elevation} value={scaleValue}/>
+            <HeightScale elevation={elevation} value={scale}/>
           <div className="container">
             <div className="box scale">
               <div className="inner-container">
-                <Scale value={scaleValue}/>
+                <Scale value={scale}/>
               </div>
             </div>
             <div className="box status">

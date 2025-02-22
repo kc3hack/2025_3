@@ -5,10 +5,17 @@ import Facilities from '../components/Facilities';
 
 import Menu from '../components/Menu';
 
+import {
+  useMoney,
+  useLmHeights,
+} from "../api/context/get_edit";
+
 function GamePage() {
+  const LmHeights = useLmHeights() || [];
+  const Money = useMoney() ?? 0;
   return (
 
-    <Landscape statusValue={100}/>
+    <Landscape statusValue={Money} tipsHeightList={LmHeights}/>
 
   );
 }

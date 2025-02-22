@@ -3,11 +3,16 @@ import "./TipPanel.css"
 import tipA from "../assets/a.png";
 import tipB from "../assets/b.png";
 import tipC from "../assets/c.png";
+import{
+    useLmNames,
+    useLmDescriptions,
+    useLmImgPaths,
+}from "../api/context/get_edit";
 
 function TipPanel({imageIndex,isFading}) {
-    const images = [tipA, tipB, tipC];
-    const tipsTitles = ["TipsTitleA","TipsTitleB","TipsTitleC"];
-    const tipsText = ["TipsA","TipsB","TipsC"];
+    const images = useLmImgPaths() || [tipA,tipB,tipC];
+    const tipsTitles = useLmNames() || ["TipA","TipB","TipC"];
+    const tipsText =useLmDescriptions() || ["TipA","TipB","TipC"];
     return (
         <div className= {`tipPanel-container ${isFading ? "fade-out" : "fade-in"}`}>
                 <div className="tipsTitle">{tipsTitles[imageIndex]}</div>
