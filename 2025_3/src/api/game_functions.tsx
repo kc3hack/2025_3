@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { use, useContext } from 'react';
 import { UserDataContext } from './context/userData';
 import { FacilityContext } from './context/facility';
 import { UserData,Facility } from './dataType';
@@ -88,7 +88,11 @@ export const useUnlockFacility = () => {
             setUserData((prev) => {
                 if (prev) {
                     const updatedUserData = {...prev,};
-                    updatedUserData.facility[idx] = 1;
+                    if(userData.facility[idx]===0){
+                    updatedUserData.facility[idx] = 1;}
+                    else{
+                       updatedUserData.facility[idx] = userData.facility[idx] ;
+                    }
                     localStorage.setItem('userData', JSON.stringify(updatedUserData));
                     return updatedUserData;
                 }
