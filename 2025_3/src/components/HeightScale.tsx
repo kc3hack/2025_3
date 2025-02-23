@@ -1,7 +1,7 @@
 import "../css_designs/HeightScale.css";
-import { useElevation } from "../api/context/get_edit";
+import { useElevation, useLmHeights } from "../api/context/get_edit";
 function HeightScale() {
-  const linePositions = [100, 200, 300, 400, 500, 600, 700, 800, 900];
+  const linePositions = useLmHeights() || [];
   const elevation = useElevation();
   return (
     <>
@@ -12,7 +12,7 @@ function HeightScale() {
             style={{
               bottom: `${10+(pos+77)*0.088}%`,
               backgroundColor:
-              (10+(elevation)*0.088) >= (10+(pos)*0.088) - 5 && (10+(elevation)*0.088)  <= (10+(pos)*0.088) + 5 ? 'red' : 'black'
+              (10+(elevation)*0.088) >= (10+(pos)*0.088) - 0.5 && (10+(elevation)*0.088)  <= (10+(pos)*0.088) + 0.3 ? 'yellow' : 'transparent'
             }}
           />
         ))}
