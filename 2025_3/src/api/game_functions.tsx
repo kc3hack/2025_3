@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { UserDataContext } from './context/userData';
 import { FacilityContext } from './context/facility';
 import { UserData,Facility } from './dataType';
-import initialFacilities from '../stores/inicialFacilities';
+import initialFacilities from '../stores/initialFacilities';
 
 // ユーザーデータを取得するカスタムフック
 export const useUserData = () => {
@@ -63,7 +63,8 @@ export const useTool_levelup = () => {
 
     return (): void => {
         if (userData) {
-             const fee=10*userData.tool_level;//この辺用改変
+
+             const fee=Math.floor(10 * Math.pow(1.2, userData.tool_level-1));//この辺用改変
             if(userData.money<fee){
                 alert("お金が足りません");
                 return;
@@ -141,7 +142,7 @@ export const useStockBenefit = () => {//こいつをメインループに入れ�
                 if (prev) {
                     return prev.map((fac, index) => {
                         if (userData.facility[index] >= 1) {
-                            const increment = fac.efficiency * userData.facility[index] * deltaTime;
+                            const increment = fac.efficiency * userData.facility[index] * (userData.elevation / 1000 * 9 + 1) * deltaTime;
                             const maxStock = fac.efficiency * userData.facility[index] * 3600;
                             return {
                                 ...fac,

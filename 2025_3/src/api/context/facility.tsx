@@ -1,6 +1,6 @@
 import { Facility } from "../dataType";
 import { createContext, useState, useEffect, ReactNode } from "react";
-import initialFacility from "../../stores/inicialFacilities";
+import initialFacility from "../../stores/initialFacilities";
 
 const FacilityContext = createContext<{
     facility: Facility[] | null;

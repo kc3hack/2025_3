@@ -1,6 +1,7 @@
 import { Tool } from "../api/dataType";
 
 const initialTools: Tool[] = [
+
 {name:"スコップ",
  img_path:"../../img/tools/tool1.png",
  minLevel:5}
@@ -36,6 +37,7 @@ minLevel:1000}
 {name:"tool10000",
 img_path:"../../img/tools/tool10000.png",
 minLevel:10000}
+
 ];
 
 export default initialTools;

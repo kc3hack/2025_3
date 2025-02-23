@@ -5,7 +5,7 @@
   left: 0;
   width: 100vw; /* ビューポート全体の幅 */
   height: 100vh; /* ビューポート全体の高さ */
-  grid-template-columns:25% 75%;
+  grid-template-columns:370px calc(100% - 370px); /* 左側は固定幅、右側は残りの幅 */
   grid-template-rows: 25%   75%;
   gap: 0;
   grid-template-areas:
@@ -13,6 +13,12 @@
     "left-bottom right-big";
 }
 
+.Height-container{
+  grid-area: right-big;
+  background-color: rgba(137, 43, 226, 0);
+  height: calc(100% - 100px);/*コンテナの高さを決める */
+  width: 100%;
+}
 
 
 .container {
@@ -50,6 +56,7 @@
     /*background-color: rgb(255, 7, 7);*/
     justify-content: center;
     align-items: start;
+    z-index: 100;
   }
 
 .box.scale {

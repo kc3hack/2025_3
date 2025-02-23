@@ -25,7 +25,7 @@ import FacilitiesWindow from "../components/FacilitiesWindow";
 import FacilitiesView from "../components/FacilitiesView";
 import { Box } from "@mui/material";
 import { Facility } from "../api/dataType";
-import initialFacilities from "../stores/inicialFacilities";
+import initialFacilities from "../stores/initialFacilities";
 
 const TestPage = () => {
   const sand = useSand();

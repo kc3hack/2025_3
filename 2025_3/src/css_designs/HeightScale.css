@@ -1,22 +1,27 @@
 /* このコンテナが横線と文字の基準になります */
 .heightScaleContainer {
+  display: flex;
+  justify-content: center;
+  background-color: transparent;
   position: absolute;
-  left: 0;
-  width: 100%;
+  left: 69%;
+  bottom: 50px;
+  transform: translateX(-50%);
 }
 
 /* 横線のスタイル */
 .heightScale {
-  width: 100%;
-  height: 4px; 
-  background-color: rgb(255, 251, 0);
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 4px;
 }
 
 /* 文字のスタイル。左端に固定 */
 .heightScaleText {
   position: absolute;
-  right: 0;
-  top: -20px; /* 横線より上に表示。必要に応じて調整 */
-  color: black;
+  text-align: right;
+  right: 10px;  /* 右端に配置 */
+  top: -20px; /* 横線より上に表示 */
   font-size: 14px;
 }

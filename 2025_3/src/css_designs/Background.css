@@ -1,0 +1,7 @@
+.background {
+    position: absolute;
+    left: 50%;
+    bottom: 100px;
+    transform: translateX(-50%);
+    filter: blur(1px) ;
+  }

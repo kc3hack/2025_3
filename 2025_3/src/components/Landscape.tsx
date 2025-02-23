@@ -17,7 +17,7 @@ function Landscape({ statusValue }: { statusValue: number }) {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [animationIndex, setAnimationIndex] = useState<number>(0);
   const [isVisible, setIsVisible] = useState<boolean>(false);
-  const [elevation, setElevation] = useState<number>(0);
+  const [elevation, setElevation] = useState<number>(45.3);
   const unlockFacility = useUnlockFacility();
 
   const handleButtonClick = () => {
@@ -59,7 +59,9 @@ function Landscape({ statusValue }: { statusValue: number }) {
   return (
     <>
       <div className="landscape">
-        <HeightScale elevation={elevation} value={scale} />
+        <div className="Height-container">
+          <HeightScale/>
+        </div>
         <div className="container">
           <div className="box scale">
             <div className="inner-container">

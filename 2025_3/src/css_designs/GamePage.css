@@ -1,7 +1,6 @@
 .game-page {
   width: 100vw;
   height: 100vh;
-  background-color: #beecf8;
   overflow: hidden;
 }
 
@@ -15,10 +14,11 @@
 
 .facilities-view {
   position: absolute;
-  left: 430px;
-  right: 50px;
+  left: 69%;
+  transform: translateX(-50%);
+  width: 500px;
   bottom: 40px;
-  height: 130px;
+  height: 40px;
 }
 
 .Tools {

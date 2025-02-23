@@ -13,6 +13,7 @@ import FacilitiesWindow from "../components/FacilitiesWindow";
 import FacilitiesView from "../components/FacilitiesView";
 import { Box } from "@mui/material";
 import "../css_designs/GamePage.css";
+import Background from "../components/Background";
 
 function GamePage() {
   const { userData } = useUserData();
@@ -39,7 +40,7 @@ function GamePage() {
 
   return (
     <div className="game-page">
-
+      <Background />
       <Landscape statusValue={Money} />
       <div className="Tools">
         <Tools />
@@ -50,11 +51,16 @@ function GamePage() {
       <div className="facilities-view">
         <FacilitiesView />
       </div>
-      <button style={{position: "absolute"}} onClick={() => { // デバッグ用リセットボタン
-        localStorage.removeItem("userData");
-        window.location.reload();
-      }}>reset</button>
-            <Menu />
+      <button // デバッグ用リセットボタン
+        style={{ position: "absolute" }}
+        onClick={() => {
+          localStorage.removeItem("userData");
+          window.location.reload();
+        }}
+      >
+        reset
+      </button>
+      <Menu />
     </div>
   );
 }

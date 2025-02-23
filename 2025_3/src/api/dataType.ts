@@ -16,12 +16,13 @@ interface Landmark {// tipsで用いるランドマークの情報
     img_path: string,       // 画像のパス
 }
 interface Facility {
-    name: string,       // 名前
-    img_path: string,   // 画像のパス
-    efficiency: number, // 単位時間あたりの取得金額
-    cost: number        // 値段
+    name: string,          // 名前
+    description: string,   // 説明
+    img_path: string,      // 画像のパス
+    efficiency: number,    // 単位時間あたりの取得金額
+    cost: number           // 値段
     magnification: number, // 倍率
-    stock: number,      //収益のストック
+    stock: number,         //収益のストック
 }
 interface Tool {
     name: string,       // 名前

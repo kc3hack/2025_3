@@ -1,6 +1,8 @@
 import React, { use, useState } from 'react';
 import { useUserData } from '../api/game_functions';
 import '../css_designs/Menu.css';
+import { Button } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
 
 function Menu() {
   const { userData, setUserData } = useUserData();
@@ -25,9 +27,13 @@ function Menu() {
 
   return (
     <div>
-      <button className="menu-icon" onClick={toggleVisibility}>
- ///
-      </button>
+      <Button sx={{
+        position: "absolute",
+        top: "10px",
+        right: "10px",
+      }} onClick={toggleVisibility}>
+        <MenuIcon />
+      </Button>
       {isVisible && userData && (
         <div className="user-data-window">
           <h2>{userData.name}'s Data</h2>
@@ -35,10 +41,10 @@ function Menu() {
           <ul>
             <li>
               Name: {userData.name}
-              <input 
-                type="text" 
-                value={newName} 
-                onChange={handleNameChange} 
+              <input
+                type="text"
+                value={newName}
+                onChange={handleNameChange}
               />
               <button onClick={updateName}>更新</button>
             </li>
