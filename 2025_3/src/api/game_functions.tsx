@@ -141,7 +141,7 @@ export const useStockBenefit = () => {//こいつをメインループに入れ�
                 if (prev) {
                     return prev.map((fac, index) => {
                         if (userData.facility[index] >= 1) {
-                            const increment = fac.efficiency * userData.facility[index] * deltaTime;
+                            const increment = fac.efficiency * userData.facility[index] * (userData.elevation / 1000 * 9 + 1) * deltaTime;
                             const maxStock = fac.efficiency * userData.facility[index] * 3600;
                             return {
                                 ...fac,
