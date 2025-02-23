@@ -28,11 +28,12 @@ const Tools = () => {
         <div className="testDiv Case2">
             <h1>道具</h1>
             <Divider className="Tools-divider" />
-            <img src="{tool}" alt="スコップ" />
             <div className="tool_level">
-            スコップ
-            <br />Lv.{tool_level}</div>
-                        <button
+                スコップ
+                <br />Lv.{tool_level}
+                <img src="../../img/tools/tool1.png" alt="スコップ" />
+            </div>
+            <button
                 className="button2"
                 onClick={buyTool} // 修正
                 disabled={money === null || money < cost}
