@@ -5,7 +5,7 @@ function Mountain({ onButtonClick }) {
   const elevation = useElevation();
   return (
     <div className="mountain-container" style={{ height: `${10+(elevation)*0.088}%`, width: `${50+(elevation)*0.02}%` }}>
-      <button className="button" onClick={onButtonClick}>Mountain</button>
+      <button className="button" onClick={onButtonClick} />
     </div>
   );
 }
