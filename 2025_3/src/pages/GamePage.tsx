@@ -13,6 +13,7 @@ import FacilitiesWindow from "../components/FacilitiesWindow";
 import FacilitiesView from "../components/FacilitiesView";
 import { Box } from "@mui/material";
 import "../css_designs/GamePage.css";
+import Background from "../components/Background";
 
 function GamePage() {
   const { userData } = useUserData();
@@ -37,22 +38,9 @@ function GamePage() {
     return () => cancelAnimationFrame(requestId);
   }, [dataLoaded, userData?.facility]);
 
-  let bgSizeRatio = 1;
-  if (userData !== null) {
-    const heightRatio = userData.elevation / 1000;
-    bgSizeRatio = 1 + 2 * Math.exp(-5 * heightRatio);
-  }
-
   return (
     <div className="game-page">
-      <img
-        className="background"
-        src="../../img/7238.jpg"
-        alt="background"
-        style={{
-          width: `calc(${bgSizeRatio} * var(--min-width))`,
-        }}
-      />
+      <Background />
       <Landscape statusValue={Money} />
       <div className="Tools">
         <Tools />
