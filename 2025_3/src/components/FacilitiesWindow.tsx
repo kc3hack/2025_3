@@ -38,13 +38,14 @@ function FacilitiesWindow() {
           >
             <div className="facility-info">
               <ListItemAvatar
+                className="facility-avatar"
                 sx={{
                   filter:
                     isLocked && !isNext ? "brightness(0%) blur(3px)" : "none",
                 }}
               >
                 <img
-                  className="facility-avatar"
+                  className="facility-image"
                   src={fac.img_path}
                   alt={`${fac.name}の画像`}
                 />
