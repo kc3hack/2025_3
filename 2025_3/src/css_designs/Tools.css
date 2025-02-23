@@ -21,9 +21,9 @@
 }
 
 .testDiv.Case2 img {
-    transform: translate(50%, 0%);
-    width: 120px;
-    height: 100px;
+    transform: translate(40%, 0%);
+    width: 130px;
+    height: 130px;
     object-fit: contain;
 }
 

@@ -1,19 +1,35 @@
 import { Tool } from "../api/dataType";
 
 const initialTools: Tool[] = [
- {name:"tool1",
+{name:"スコップ",
  img_path:"../../img/tools/tool1.png",
  minLevel:5}
  ,
-{name:"tool2",
+{name:"シャベル",
 img_path:"../../img/tools/tool2.png",
 minLevel:10}
 ,
-{name:"tool3",
+{name:"wheelbarrow",
 img_path:"../../img/tools/tool3.png",
 minLevel:15}
 ,
-{name:"tool1000",
+{name:"bulldozer",
+img_path:"../../img/tools/tool4.png",
+minLevel:20}
+,
+{name:"truck",
+img_path:"../../img/tools/tool5.png",
+minLevel:25}
+,
+{name:"cargoship",
+img_path:"../../img/tools/tool6.png",
+minLevel:30}
+,
+{name:"ufo",
+img_path:"../../img/tools/tool7.png",
+minLevel:35}
+,
+{name:"GodLeft",
 img_path:"../../img/tools/tool1000.png",
 minLevel:1000}
 ,
