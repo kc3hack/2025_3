@@ -1,8 +1,18 @@
 .game-page {
   width: 100vw;
   height: 100vh;
-  background-color: #beecf8;
   overflow: hidden;
+}
+
+.background {
+  --min-width: calc((100vh - 100px) * 13 / 8);
+  position: absolute;
+  left: 50%;
+  bottom: 100px;
+  transform: translateX(-50%);
+  min-width: var(--min-width);
+  aspect-ratio: 13 / 8;
+  filter: blur(1px) ;
 }
 
 .facilities-window {
@@ -20,4 +30,13 @@
   bottom: 40px;
   height: 40px;
 }
+
+.Tools {
+  position: absolute;
+  left: 10px;
+  top: 20vh;
+  width: 350px;
+  height: 0vh;
+}
+
 
