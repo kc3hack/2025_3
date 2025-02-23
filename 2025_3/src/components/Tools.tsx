@@ -2,13 +2,13 @@ import "../components/Tools.css";
 import { useState } from "react";
 import { useMoney, useUserData } from "../api/context/get_edit";
 import { useTool_levelup } from "../api/context/game_functions";
-import a from "../src/assets/a.png"
+import a from "../img/mountain_yama.png"
 
 const Tools = () => {
     const money = useMoney();
     const tool_level = useUserData().userData?.tool_level;
     const buyTool = useTool_levelup();
-
+    const aa = a
     // cost の宣言を関数のスコープ内に移動
     let cost = null;
 
@@ -25,21 +25,25 @@ const Tools = () => {
 
     return (
         <div className="testDiv Case2">
-            div2
-            <div className="testDiv Case7">
-              aa
-            </div>
+            <div className="testDiv Case4">道具</div>
+            <img
+                  className="Tool-avatar"
+                  src={aa}
+                  alt={`スコップの画像`}
+                />
             <div className="tool_level">
             スコップ
             <br />Lv.{tool_level}</div>
-
-            {"¥" + cost.toLocaleString()}
             <button
                 className="button2"
                 onClick={() => buyTool(/* 必要な引数を渡す */)} // 引数を渡す
                 disabled={money === null || money < cost} // money が null の場合も考慮
             >
-                Change Image
+            <div className="testDiv.Case1">
+            レベルアップ
+            <br />
+            {"¥" + cost.toLocaleString()}</div>
+                
             </button>
         </div>
     );
