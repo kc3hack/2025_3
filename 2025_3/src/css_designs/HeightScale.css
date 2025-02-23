@@ -19,8 +19,7 @@
 /* 文字のスタイル。左端に固定 */
 .heightScaleText {
   position: absolute;
-  right: 0;
-  top: -20px; /* 横線より上に表示。必要に応じて調整 */
-  color: black;
+  right: 30%;  /* 右端に配置 */
+  top: -20px; /* 横線より上に表示 */
   font-size: 14px;
 }
