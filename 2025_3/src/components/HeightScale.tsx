@@ -8,24 +8,18 @@ function HeightScale() {
   return (
     <>
       {linePositions.map((pos, index) => {
-        const isInRange =
-          10 + elevation * 0.088 >= 10 + pos * 0.088 - 0.5 &&
-          10 + elevation * 0.088 <= 10 + pos * 0.088 + 0.3;
-        const lineColor = isInRange ? "yellow" : "transparent";
+        const isInRange = pos - 5 <= elevation && elevation <= pos;
+        const lineColor = isInRange ? "yellow" : "transparent"; // 線の色は黄色か透明
+        // const lineColor = "yellow"; // 線の色は黄色か透明
         const textColor = isInRange ? "black" : "transparent"; // 文字の色は黒か透明
+        // const textColor = "black"; // 文字の色は黒か透明
 
         return (
-          <div key={index} className="heightScale" style={{ bottom: `${10 + (pos + 77) * 0.088}%`, backgroundColor: lineColor }}>
+          <div key={index} className="heightScale" style={{ bottom: `calc(100px + 10% + 90% * ${pos} / 1000)`, backgroundColor: lineColor }}>
             <span className="heightScaleText" style={{ color: textColor }}>{pos}m</span>
           </div>
         );
       })}
-      
-      <div className="heightScaleContainer">
-        <div className="heightScale" style={{ bottom: `${10 + elevation * 0.088}%`, backgroundColor: "red" }}>
-          <span className="heightScaleText" style={{ color: "black" }}>{elevation}</span> {/* 赤線の文字は常に黒 */}
-        </div>
-      </div>
     </>
   );
 }

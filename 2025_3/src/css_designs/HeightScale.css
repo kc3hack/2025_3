@@ -12,14 +12,16 @@
 /* 横線のスタイル */
 .heightScale {
   position: absolute;
-  width: 100%;
-  height: 4px; 
+  left: 0;
+  right: 0;
+  height: 4px;
 }
 
 /* 文字のスタイル。左端に固定 */
 .heightScaleText {
   position: absolute;
-  right: 30%;  /* 右端に配置 */
+  text-align: right;
+  right: 10px;  /* 右端に配置 */
   top: -20px; /* 横線より上に表示 */
   font-size: 14px;
 }
