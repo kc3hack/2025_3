@@ -13,6 +13,12 @@
     "left-bottom right-big";
 }
 
+.Height-container{
+  grid-area: right-big;
+  background-color: rgba(137, 43, 226, 0);
+  height: 85%;/*コンテナの高さを決める */
+  width: 100%;
+}
 
 
 .container {
