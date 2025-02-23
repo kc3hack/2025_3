@@ -1,12 +1,12 @@
 import { Facility } from "../api/dataType";
 
 const initialFacilities: Facility[] = [
-  {
-    name: "施設1",
+  { // 最初からアンロックされている施設
+    name: "天保山公園",
     img_path: "../../img/facilities/landmark_oosakajou.png",
-    efficiency: 1,
-    cost: 1,
-    magnification: 1.5,
+    efficiency: 100,
+    cost: 1000,
+    magnification: 2,
     stock: 0,
   },
   {
