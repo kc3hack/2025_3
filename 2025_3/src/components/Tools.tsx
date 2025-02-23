@@ -1,17 +1,18 @@
-import "../components/Tools.css";
-import { useState } from "react";
+import "../css_designs/Tools.css";
+import {
+  Divider,
+} from "@mui/material";
 import { useMoney, useUserData } from "../api/context/get_edit";
-import { useTool_levelup } from "../api/context/game_functions";
-import a from "../img/mountain_yama.png"
+import { useTool_levelup } from "../api/game_functions";
+import {useToolImgPaths} from "../api/context/get_edit";
 
 const Tools = () => {
     const money = useMoney();
     const tool_level = useUserData().userData?.tool_level;
     const buyTool = useTool_levelup();
-    const aa = a
+    const  tool  = useToolImgPaths();
     // cost の宣言を関数のスコープ内に移動
     let cost = null;
-
     if (tool_level) { // tool_level が null でない場合に cost を計算
         cost = Math.round(10 * tool_level);
     } else {
@@ -25,19 +26,16 @@ const Tools = () => {
 
     return (
         <div className="testDiv Case2">
-            <div className="testDiv Case4">道具</div>
-            <img
-                  className="Tool-avatar"
-                  src={aa}
-                  alt={`スコップの画像`}
-                />
+            <h1>道具</h1>
+            <Divider className="Tools-divider" />
+            <img src="{tool}" alt="スコップ" />
             <div className="tool_level">
             スコップ
             <br />Lv.{tool_level}</div>
-            <button
+                        <button
                 className="button2"
-                onClick={() => buyTool(/* 必要な引数を渡す */)} // 引数を渡す
-                disabled={money === null || money < cost} // money が null の場合も考慮
+                onClick={buyTool} // 修正
+                disabled={money === null || money < cost}
             >
             <div className="testDiv.Case1">
             レベルアップ

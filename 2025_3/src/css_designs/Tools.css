@@ -1,0 +1,59 @@
+/* 道具UI全体 */
+.testDiv.Case2 {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #2a3538;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    background-color: #ffffff50;
+    align-items: center;
+    width: 250px;
+    height: 300px;
+    margin: 0 auto;
+    padding: 20px; /* パディングを追加 */
+}
+
+.testDiv.Case2 .Tools-divider {
+    margin-bottom: 10px;
+    border: none;
+    border-top: 1px solid #2a3538;
+    width: 100%; /* divider を左右いっぱいに広げる */
+}
+
+.testDiv.Case2 h1 {
+    text-align: center;
+    font-weight: 100;
+    margin-bottom: 20px; /* h1 の下に余白を追加 */
+}
+
+/* 道具アイコン */
+.testDiv.Case2 img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    object-fit: contain; /* 画像が要素内に収まるように表示 */
+}
+
+/* レベル表示 */
+.tool_level {
+    display: flex; /* アイコンとレベル表示を横並びにする */
+    align-items: center; /* アイコンとレベル表示を中央揃えにする */
+    font-size: 1.5rem;
+    margin-bottom: 20px; /* レベル表示の下に余白を追加 */
+}
+
+/* レベルアップボタン */
+.button2 {
+    background-color: #4CAF50;
+    border-radius: 10px;
+    width: 100%; /* ボタンを左右いっぱいに広げる */
+    height: 50px;
+    font-size: 1.2rem;
+    margin-bottom: 10px; /* ボタンの下に余白を追加 */
+}
+
+/* 価格表示 */
+.testDiv.Case1 {
+    font-size: 1.2rem;
+    text-align: center; /* 価格表示を中央揃えにする */
+}

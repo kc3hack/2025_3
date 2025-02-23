@@ -1,7 +1,8 @@
 import { useContext } from 'react';
-import { UserDataContext } from './userData';
-import { FacilityContext } from './facility';
-import { UserData,Facility } from '../dataType';
+import { UserDataContext } from './context/userData';
+import { FacilityContext } from './context/facility';
+import { UserData,Facility } from './dataType';
+import initialFacilities from '../stores/inicialFacilities';
 
 // ユーザーデータを取得するカスタムフック
 export const useUserData = () => {
@@ -23,12 +24,17 @@ export const useFacilityData = () => {
 //道具のlevelの値の分だけ土砂の量を増やす関数
 export const useAddSand = () => {
     const { userData, setUserData } = useUserData();
-    return (): void => {
+    return (): number => {
         if (userData) {
-            const updatedUserData = { ...userData, sand: userData.sand + userData.tool_level };//この辺用改変
+            const newSand = userData.sand + (userData.tool_level);//この辺用改変
+            // const newElevation = Math.cbrt(newSand);
+            const newElevation = userData.elevation + 1;
+            const updatedUserData = { ...userData, sand: newSand, elevation: newElevation };//この辺用改変
             setUserData(updatedUserData);
             localStorage.setItem('userData', JSON.stringify(updatedUserData));
+            return newElevation;
         }
+        return 0;
     };
 };
 //土砂の値から標高を算出し代入する関数(今回は土砂の量の三乗根を標高とする)
@@ -37,23 +43,30 @@ export const useCalcElevation = ()=> {
    // return userData ? Math.cbrt(userData.sand) : null;
       return (): void => {
         if (userData) {
-            const updatedUserData = { ...userData, elevation: Math.cbrt(userData.sand) };//この辺用改変
-            setUserData(updatedUserData);
-            localStorage.setItem('userData', JSON.stringify(updatedUserData));
+            setUserData((prev) => {
+                if (prev) {
+                    const updatedUserData = {
+                        ...prev,
+                        elevation: Math.cbrt(prev.sand), // ここを変更
+                    };
+                    localStorage.setItem('userData', JSON.stringify(updatedUserData));
+                    return updatedUserData;
+                }
+                return prev;
+            });
         }
     };
 }
 //道具のlevelを上げる関数
 export const useTool_levelup = () => {
     const { userData, setUserData } = useUserData();
-   
-    return () => {
+
+    return (): void => {
         if (userData) {
              const fee=10*userData.tool_level;//この辺用改変
             if(userData.money<fee){
                 alert("お金が足りません");
-                return false
-                
+                return;
             }
             const updatedUserData = {
                 ...userData,
@@ -62,22 +75,39 @@ export const useTool_levelup = () => {
             };
             setUserData(updatedUserData);
             localStorage.setItem('userData', JSON.stringify(updatedUserData));
-            return true
+        }
+    };
+}
+
+// 施設をアンロックする関数
+export const useUnlockFacility = () => {
+    const { userData, setUserData } = useUserData();
+    return (idx: number): void => {
+        if (userData) {
+            setUserData((prev) => {
+                if (prev) {
+                    const updatedUserData = {...prev,};
+                    updatedUserData.facility[idx] = 1;
+                    localStorage.setItem('userData', JSON.stringify(updatedUserData));
+                    return updatedUserData;
+                }
+                return prev;
+            });
         }
     };
 }
 
 // 施設の購入を行える関数（配列の一部値を増減させる関数）
-export const useBuyFacility = (index: number) => {
+export const useBuyFacility = () => {
     const { userData, setUserData } = useUserData();
     const facilityContext = useContext(FacilityContext);
     if (!facilityContext) {
         throw new Error("useBuyFacility must be used within a FacilityProvider");
     }
     const { facility } = facilityContext;
-    return (): void => {
-        if (userData) {
-            const fee = facility[index].cost;//この辺用改変
+    return (index: number): void => {
+        if (userData && facility) {
+            const fee = Math.round(facility[index].cost * facility[index].magnification ** (userData.facility[index] - 1));
             if (userData.money < fee) {
                 alert("お金が足りません");
                 return;
@@ -101,29 +131,32 @@ export const useBuyFacility = (index: number) => {
    //userData.facilityの値が1以上のものに対して、facilityのefficiencyの値分だけstockの値を増やす
    //stockの値stockの値はFacilityのefficiencyの値にUserDataのfacilityの値をかけた値の3600倍以上にはならない
 
-export const useStockBenefit = () => {//こいつを毎秒実行する感じにする
+export const useStockBenefit = () => {//こいつをメインループに入れる
     const { userData } = useUserData();
-    const { facility, setFacility } = useFacilityData();
+    const { setFacility } = useFacilityData();
 
-    return (): void => {
-        if (userData && facility) {
-            const updatedFacility = facility.map((fac, index) => {
-                if (userData.facility[index] >= 1) {
-                    const increment = fac.efficiency * userData.facility[index];
-                    const maxStock = fac.efficiency * userData.facility[index] * 3600;
-                    return {
-                        ...fac,
-                        stock: Math.min(fac.stock + increment, maxStock),
-                    };
+    return (deltaTime: number): void => {
+        if (userData && setFacility) {
+            setFacility((prev) => {
+                if (prev) {
+                    return prev.map((fac, index) => {
+                        if (userData.facility[index] >= 1) {
+                            const increment = fac.efficiency * userData.facility[index] * deltaTime;
+                            const maxStock = fac.efficiency * userData.facility[index] * 3600;
+                            return {
+                                ...fac,
+                                stock: Math.min(fac.stock + increment, maxStock),
+                            };
+                        }
+                        return fac;
+                    });
                 }
-                return fac;
+                return prev;
             });
-
-            setFacility(updatedFacility);
-            localStorage.setItem('facility', JSON.stringify(updatedFacility));
         }
     };
 };
+
 //施設の収益を受け取る関数
 export const useGetBenefit = () => {
     const { userData, setUserData } = useUserData();
@@ -133,17 +166,16 @@ export const useGetBenefit = () => {
             const updatedUserData = {
                 ...userData,
                 money: userData.money + facility.reduce((acc, fac, index) => {
-                    const benefit = fac.stock * fac.magnification;
+                    const benefit = Math.floor(fac.stock);
                     const updatedFacility = [...facility];
                     updatedFacility[index].stock = 0;
                     setFacility(updatedFacility);
-                    return acc + benefit;
+                    return Math.floor(acc + benefit);
                 }, 0),
             };
-            
+
             setUserData(updatedUserData);
             localStorage.setItem('userData', JSON.stringify(updatedUserData));
-            localStorage.setItem('facility', JSON.stringify(facility));
         }
     };
 }

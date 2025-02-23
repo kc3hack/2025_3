@@ -1,7 +1,9 @@
-function Scale() {
+import "../css_designs/Scale.css";
+
+function Scale({ value }) {
   return (
-    <div>
-      <h1>Scale</h1>
+    <div className="scale-item">
+      {value === null ? "" : value.toFixed(2)}m
     </div>
   );
 }

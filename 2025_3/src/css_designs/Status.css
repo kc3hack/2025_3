@@ -1,0 +1,9 @@
+.status-item{
+    line-height: 50px;
+    width: auto;
+    min-width: 10%;
+    padding: 0 10px;
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    border-radius :9999px;
+}
