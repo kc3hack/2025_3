@@ -14,7 +14,7 @@ const Tools = () => {
     // cost の宣言を関数のスコープ内に移動
     let cost = null;
     if (tool_level) { // tool_level が null でない場合に cost を計算
-        cost = Math.round(10 * tool_level);
+   cost = Math.round(Math.floor(10 * Math.pow(1.2, tool_level-1)));
     } else {
         return null; // tool_level が null の場合は何も表示しない
     }
