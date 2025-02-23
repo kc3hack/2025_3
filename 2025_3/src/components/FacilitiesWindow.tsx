@@ -84,8 +84,14 @@ function FacilitiesWindow() {
               >
                 {fac.name}
               </Typography>
+              <Typography sx={{ textAlign: "center" }}>
+                {fac.description}
+              </Typography>
+              <br />
               <Typography>{`現在の収益効率: ¥${(
-                fac.efficiency * facilityLevels[idx] * (mountainHeight! / 1000 * 9 + 1)
+                fac.efficiency *
+                facilityLevels[idx] *
+                ((mountainHeight! / 1000) * 9 + 1)
               ).toLocaleString()} / 秒`}</Typography>
               <Typography>{`次のレベルにするための費用: ¥${cost.toLocaleString()}`}</Typography>
             </>
