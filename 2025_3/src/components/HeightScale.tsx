@@ -2,11 +2,11 @@ import "../css_designs/HeightScale.css";
 
 function HeightScale({ elevation, value }) {
   // それぞれの横線の表示値を計算
-  const computed1 = Math.floor((value ) / 10) * 10 + 30;
-  const computed2 = Math.floor((value ) / 10) * 10 + 20;
-  const computed3 = Math.floor((value ) / 10) * 10 + 10;
-  const computed4 = Math.floor((value ) / 10) * 10;
-  const computed5 = Math.floor((value ) / 10) * 10 - 10;
+  const computed1 = Math.floor((value ) / 10) * 10 + 40;
+  const computed2 = Math.floor((value ) / 10) * 10 + 30;
+  const computed3 = Math.floor((value ) / 10) * 10 + 20;
+  const computed4 = Math.floor((value ) / 10) * 10 + 10;
+  const computed5 = Math.floor((value ) / 10) * 10;
 
   // 背景色を決定する関数
   const getLineColor = (computedValue: number) => {
