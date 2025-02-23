@@ -63,7 +63,7 @@ export const useTool_levelup = () => {
 
     return (): void => {
         if (userData) {
-            
+
              const fee=Math.floor(10 * Math.pow(1.2, userData.tool_level-1));//この辺用改変
             if(userData.money<fee){
                 alert("お金が足りません");
