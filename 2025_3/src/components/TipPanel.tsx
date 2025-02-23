@@ -41,7 +41,7 @@ function TipPanel({ imageIndex, isFading }) {
       </div>
       <hr className="tip-divider" />
       <p className="tip-unlock">
-        <b>{facility[imageIndex] && facility[imageIndex + 1].name}</b>
+        <b>{facility[imageIndex + 1] && facility[imageIndex + 1].name}</b>
         &nbsp;がアンロックされました
       </p>
     </div>
