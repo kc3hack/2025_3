@@ -3,35 +3,58 @@ import { Facility } from "../api/dataType";
 const initialFacilities: Facility[] = [
   { // 最初からアンロックされている施設
     name: "天保山公園",
-    description: "隠れた花見の名所としても注目されている。",
+     description: "隠れた花見の名所としても注目されている。",
     img_path: "../../img/facilities/landmark_oosakajou.png",
-    efficiency: 100,
-    cost: 1000,
-    magnification: 2,
+    efficiency: 1,
+    cost: 10,
+    magnification: 1.1,
     stock: 0,
   },
   {
     name: "施設2",
-    description: "施設2の説明。",
+     description: "施設2の説明。",
     img_path: "../../img/facilities/building_suizokukan.png",
     efficiency: 1,
     cost: 2,
+    magnification: 1.2,
+    stock: 0,
+  },
+  {
+    name: "施設3",
+     description: "施設3の説明。",
+    img_path: "../../img/facilities/building_high2.png",
+    efficiency: 1,
+    cost: 3,
+    magnification: 1.3,
+    stock: 0,
+  },
+  {
+    name: "施設4",
+     description: "施設4の説明。",
+    img_path: "../../img/facilities/kankou_kinkakuji.png",
+    efficiency: 1,
+    cost: 4,
+    magnification: 1.4,
+    stock: 0,
+  },
+  {
+    name: "施設5",
+     description: "施設5の説明。",
+    img_path: "../../img/facilities/tatemono_jinja.png",
+    efficiency: 1,
+    cost: 5,
     magnification: 1.5,
     stock: 0,
   },
-
+  {
+    name: "施設6",
+     description: "施設6の説明。",
+    img_path: "../../img/facilities/tsutenkaku_osaka.png",
+    efficiency: 1,
+    cost: 6,
+    magnification: 1.6,
+    stock: 0,
+  },
 ];
 
 export default initialFacilities;
-
-/*
-interface Facility {    // 施設の情報
-  name: string,         // 名前
-  description: string,  // 説明
-  img_path: string,     // 画像のパス
-  efficiency: number,   // 収益効率
-  cost: number,         // レベルアップコストの初期値
-  magnification: number,// レベルアップコストの上昇倍率
-  stock: number,        // 収益のストック
-}
-*/
