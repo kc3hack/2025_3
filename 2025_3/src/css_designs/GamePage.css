@@ -7,7 +7,7 @@
 .facilities-window {
   position: absolute;
   left: 10px;
-  top: 40vh;
+  top: 48vh;
   width: 350px;
   height: 45vh;
 }
@@ -24,9 +24,17 @@
 .Tools {
   position: absolute;
   left: 10px;
-  top: 20vh;
+  top: 27vh;
   width: 350px;
   height: 0vh;
+}
+.title{
+  position: absolute;
+ left: 10px;
+  top: 10px;
+  transform: translateX(0%);
+  font-size: 200%;
+  font-weight: 100;
 }
 
 

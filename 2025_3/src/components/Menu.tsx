@@ -52,6 +52,14 @@ function Menu() {
             <li>Elevation: {userData.elevation}m</li>
             <li>Money: {userData.money}</li>
             <li>Tool Level: {userData.tool_level}</li>
+            <button
+              onClick={() => {
+                localStorage.removeItem('userData');
+                window.location.reload();
+              }}
+            >
+              Reset
+            </button>
           </ul>
         </div>
       )}

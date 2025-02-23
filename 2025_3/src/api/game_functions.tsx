@@ -26,9 +26,9 @@ export const useAddSand = () => {
     const { userData, setUserData } = useUserData();
     return (): number => {
         if (userData) {
-            const newSand = userData.sand + (userData.tool_level);//この辺用改変
-            // const newElevation = Math.cbrt(newSand);
-            const newElevation = userData.elevation + 1;
+            const newSand = userData.sand + 30*(Math.pow(2.2, userData.tool_level-1));//この辺用改変
+             const newElevation = Math.cbrt(newSand);
+          //  const newElevation = userData.elevation + 1;
             const updatedUserData = { ...userData, sand: newSand, elevation: newElevation };//この辺用改変
             setUserData(updatedUserData);
             localStorage.setItem('userData', JSON.stringify(updatedUserData));
@@ -64,7 +64,7 @@ export const useTool_levelup = () => {
     return (): void => {
         if (userData) {
 
-             const fee=Math.floor(10 * Math.pow(1.2, userData.tool_level-1));//この辺用改変
+             const fee=Math.floor(30 * Math.pow(2, userData.tool_level-1));//この辺用改変
             if(userData.money<fee){
                 alert("お金が足りません");
                 return;
@@ -108,7 +108,7 @@ export const useBuyFacility = () => {
     const { facility } = facilityContext;
     return (index: number): void => {
         if (userData && facility) {
-            const fee = Math.round(facility[index].cost * facility[index].magnification ** (userData.facility[index] - 1));
+            const fee = Math.round(facility[index].cost * facility[index].magnification *(userData.facility[index]-1)** (userData.facility[index] - 1));
             if (userData.money < fee) {
                 alert("お金が足りません");
                 return;
@@ -142,7 +142,7 @@ export const useStockBenefit = () => {//こいつをメインループに入れ�
                 if (prev) {
                     return prev.map((fac, index) => {
                         if (userData.facility[index] >= 1) {
-                            const increment = fac.efficiency * userData.facility[index] * (userData.elevation / 1000 * 9 + 1) * deltaTime;
+                            const increment = fac.efficiency * userData.facility[index] * (userData.elevation / 500 * 9 + 1) * deltaTime;
                             const maxStock = fac.efficiency * userData.facility[index] * 3600;
                             return {
                                 ...fac,

@@ -24,7 +24,8 @@ const Tools = () => {
 
 
     if (tool_level) { // tool_level が null でない場合に cost を計算
-   cost = Math.round(Math.floor(10 * Math.pow(1.2, tool_level-1)));
+   cost = Math.round(Math.floor(30 * Math.pow(2, tool_level-1)));
+  
 
     } else {
         return null;
