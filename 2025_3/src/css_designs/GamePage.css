@@ -31,3 +31,12 @@
   height: 40px;
 }
 
+.Tools {
+  position: absolute;
+  left: 10px;
+  top: 20vh;
+  width: 350px;
+  height: 0vh;
+}
+
+

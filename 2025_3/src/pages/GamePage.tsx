@@ -54,6 +54,9 @@ function GamePage() {
         }}
       />
       <Landscape statusValue={Money} />
+      <div className="Tools">
+        <Tools />
+      </div>
       <div className="facilities-window">
         <FacilitiesWindow />
       </div>
