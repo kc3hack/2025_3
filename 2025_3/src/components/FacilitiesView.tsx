@@ -8,7 +8,11 @@ function FacilitiesView() {
   const { facility } = useFacilityData();
   const facilityLevels = useUserData().userData?.facility;
   const getBenefit = useGetBenefit();
-  const itemSize = 100;
+  const mountainHeight = useUserData().userData?.elevation;
+
+  const MAX_IMAGE_SIZE = 100;
+
+  if (!facility || !facilityLevels || !mountainHeight) return null;
 
   let facilityItems = null;
   if (facility) {
@@ -16,18 +20,19 @@ function FacilitiesView() {
       if (!facilityLevels) return null;
       if (facilityLevels![idx] === 0) return <div key={idx}></div>;
 
-      const ratio_left = idx / (facility.length - 1);
-      const ratio_top = (idx % 3) / 2;
-      const zIndex = idx % 3;
+      const ratioLeft = idx / (facility.length - 1);
+      const ratioBottom = (idx % 3) / 2;
+      const imageSize = MAX_IMAGE_SIZE * Math.log(10 * facilityLevels[idx] / mountainHeight + 2);
+      const zIndex = 3 - idx % 3;
       return (
         <Box
           key={idx}
           className="facility-box"
           sx={{
-            left: `calc((100% - ${itemSize}px) * ${ratio_left})`,
-            top: `calc((100% - ${itemSize}px) * ${ratio_top})`,
-            width: itemSize,
-            height: itemSize,
+            left: `calc((100% - ${imageSize}px) * ${ratioLeft})`,
+            bottom: `calc(100% * ${ratioBottom})`,
+            width: imageSize,
+            height: imageSize,
             zIndex: zIndex,
           }}
         >
