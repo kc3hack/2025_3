@@ -64,7 +64,7 @@ export const useTool_levelup = () => {
     return (): void => {
         if (userData) {
 
-             const fee=Math.floor(30 * Math.pow(2, userData.tool_level-1));//この辺用改変
+             const fee=Math.floor(30 * Math.pow(1.5, userData.tool_level-1));//この辺用改変
             if(userData.money<fee){
                 alert("お金が足りません");
                 return;
@@ -112,7 +112,7 @@ export const useBuyFacility = () => {
     const { facility } = facilityContext;
     return (index: number): void => {
         if (userData && facility) {
-            const fee = Math.round(facility[index].cost * facility[index].magnification *(userData.facility[index]-1)** (userData.facility[index] - 1));
+            const fee = Math.round(facility[index].cost * facility[index].magnification *Math.log(2+(userData.facility[index]-1))** (userData.facility[index] - 1));
             if (userData.money < fee) {
                 alert("お金が足りません");
                 return;
