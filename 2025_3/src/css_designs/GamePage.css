@@ -30,7 +30,7 @@
 }
 .title{
   position: absolute;
- left: 10px;
+ left: 50%;
   top: 10px;
   transform: translateX(0%);
   font-size: 200%;
