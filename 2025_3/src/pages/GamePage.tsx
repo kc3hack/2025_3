@@ -39,7 +39,9 @@ function GamePage() {
   }, [dataLoaded, userData?.facility]);
 
   return (
+    
     <div className="game-page">
+    
       <Background />
       <Landscape statusValue={Money} />
       <div className="Tools">
@@ -51,16 +53,9 @@ function GamePage() {
       <div className="facilities-view">
         <FacilitiesView />
       </div>
-      <button // デバッグ用リセットボタン
-        style={{ position: "absolute" }}
-        onClick={() => {
-          localStorage.removeItem("userData");
-          window.location.reload();
-        }}
-      >
-        reset
-      </button>
+   
       <Menu />
+        <div className="title">天保山を育てよう</div>
     </div>
   );
 }

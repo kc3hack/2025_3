@@ -1,36 +1,43 @@
 import { Tool } from "../api/dataType";
 
 const initialTools: Tool[] = [
-  {
-    name: "手",
-    img_path: "../../img/tools/body_te.png",
-    minLevel: 0
-  },
-  {
-    name: "スコップ",
-    img_path: "../../img/tools/shvel_scoop.png",
-    minLevel: 1,
-  },
-  {
-    name: "シャベル",
-    img_path: "../../img/tools/shovel_scoop_ken.png",
-    minLevel: 2,
-  },
-  {
-    name: "バケツ",
-    img_path: "../../img/tools/bucket_iron_empty_down.png",
-    minLevel: 3,
-  },
-  {
-    name: "手押し車",
-    img_path: "../../img/tools/ichirin_teoshiguruma.png",
-    minLevel: 4,
-  },
-  {
-    name: "ブルドーザー",
-    img_path: "../../img/tools/car_bulldozer.png",
-    minLevel: 5,
-  },
+
+{name:"スコップ",
+ img_path:"../../img/tools/tool1.png",
+ minLevel:5}
+ ,
+{name:"シャベル",
+img_path:"../../img/tools/tool2.png",
+minLevel:10}
+,
+{name:"wheelbarrow",
+img_path:"../../img/tools/tool3.png",
+minLevel:15}
+,
+{name:"bulldozer",
+img_path:"../../img/tools/tool4.png",
+minLevel:20}
+,
+{name:"truck",
+img_path:"../../img/tools/tool5.png",
+minLevel:25}
+,
+{name:"cargoship",
+img_path:"../../img/tools/tool6.png",
+minLevel:30}
+,
+{name:"ufo",
+img_path:"../../img/tools/tool7.png",
+minLevel:35}
+,
+{name:"GodLeft",
+img_path:"../../img/tools/tool1000.png",
+minLevel:1000}
+,
+{name:"tool10000",
+img_path:"../../img/tools/tool10000.png",
+minLevel:10000}
+
 ];
 
 export default initialTools;

@@ -26,7 +26,7 @@ function FacilitiesWindow() {
       const isLocked = facilityLevels![idx] === 0;
       const isNext = isLocked && idx > 0 && facilityLevels![idx - 1] > 0;
       const cost = Math.round(
-        fac.cost * fac.magnification ** (facilityLevels![idx] - 1)
+        fac.cost * fac.magnification*(facilityLevels![idx] - 1) ** (facilityLevels![idx] - 1)
       );
 
       const listItems = (
