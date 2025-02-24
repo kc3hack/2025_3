@@ -50,8 +50,8 @@ function Menu() {
             </li>
             <li>Sand: {userData.sand}kg</li>
             <li>Elevation: {userData.elevation}m</li>
-            <li>Money: {userData.money}</li>
-            <li>Tool Level: {userData.tool_level}yen</li>
+            <li>Money: {userData.money}yen</li>
+            <li>Tool Level: {userData.tool_level}</li>
             <button
               onClick={() => {
                 localStorage.removeItem('userData');
