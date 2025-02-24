@@ -6,7 +6,6 @@ const initialLandmarks: Landmark[] = [
   { height: 32.55,   markpoint: -1,  name: "法隆寺　五重塔", prefecture: "奈良県", description: "国宝。木造五重塔として現存世界最古。最下層の心柱の四方には釈迦に関する四つの説話を表す塑像の小群像がある。", img_path: "../../img/landmarks/landmark3.png" },
   { height: 41.5,   markpoint: 2,   name: "余部鉄橋", prefecture: "兵庫県", description: "全長309.4mのJR山陰本線の鉄橋。保存されている3本の橋脚が、展望施設「空の駅」を支えており、ここから日本海を一望できる。", img_path: "../../img/landmarks/landmark4.png" },
   { height: 50.0,   markpoint: -1,  name: "三段壁", prefecture: "和歌山", description: "千畳敷の南海岸にそそり立つ断崖。南北約2kmにわたって展開され、黒潮が岸壁に打ち寄せるダイナミックな光景が望める。", img_path: "../../img/landmarks/landmark5.png" },
-  { height: 60.0,   markpoint: -1,  name: "ランドマーク6", prefecture: "滋賀県", description: "", img_path: "../../img/landmarks/landmark6.png" },
   { height: 70.0,   markpoint: 3,   name: "太陽の塔", prefecture: "大阪府", description: "芸術家の岡本太郎がデザインし、1970年に開催された日本万国博覧会で作られた。内部には高さ約41メートルの「生命の樹」がある。", img_path: "../../img/landmarks/landmark7.png" },
   { height: 81.4,   markpoint: -1,  name: "関西国際空港管制塔", prefecture: "大阪府", description: "空港島のほぼ中央に設置されている関西国際空港の管制塔。空港から半径９ｋｍ圏内にいる飛行機に離陸や着陸の指示を出してる。", img_path: "../../img/landmarks/landmark8.png" },
   { height: 90.0,   markpoint: -1,  name: "四日市港ポートビル展望展示室", prefecture: "三重県", description: "四日市港の開港100周年を記念して建てられた。最上階の展望展示室「うみてらす14」は、360度の展望が楽しめる。", img_path: "../../img/landmarks/landmark9.png" },
@@ -14,7 +13,9 @@ const initialLandmarks: Landmark[] = [
   { height: 108.0,  markpoint: -1,  name: "通天閣", prefecture: "大阪府", description: "現在の通天閣は2代目。屋外展望台に出ることができたり、滑り台を滑るツアーがある。", img_path:  "../../img/landmarks/landmark10.8.png" },
   { height: 131.0,  markpoint: 5,   name: "ニデック京都タワー", prefecture: "京都府", description: "設置されている望遠鏡を覗くと、三十三間堂本堂や知恩院山門などの国宝や、東寺、清水寺などの京都の有名な観光スポットを見ることができる。", img_path: "../../img/landmarks/landmark13.1.png" },
   { height: 173.0,  markpoint: -1,   name: "梅田スカイビル 空中庭園展望台", prefecture: "大阪府", description: "連結高層建築・梅田スカイビルの連結部にあり、40階の屋内展望台と360度展望台で構成される。晴れた日には淡路島までも一望できる。", img_path: "../../img/landmarks/landmark17.png" },
-  { height: 242.0,  markpoint: 6,  name: "o", prefecture: "a", description: "aa", img_path: "./" },
+  { height: 242.0,  markpoint: 6,  name: "清水山", prefecture: "京都府", description: "あの清水寺が中腹にある。慣用句、「清水の舞台から飛び降りる」の清水はここのことであり、実際の高さは13m程である。", img_path: "../../img/landmarks/landmark24.2.png" },
+  { height: 300.0,   markpoint: -1,  name: "あべのハルカス", prefecture: "大阪府", description: "日本一の高さを誇るビル。 ビル内には「ハルカス300」という展望台が、58～60階に渡って広がっている。また吹き抜けの空中庭園も設置されている。", img_path: "../../img/landmarks/landmark6.png" },
+
 ]; export default initialLandmarks;
 
 
