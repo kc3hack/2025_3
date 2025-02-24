@@ -14,7 +14,7 @@ const initialLandmarks: Landmark[] = [
   { height: 131.0,  markpoint: 5,   name: "ニデック京都タワー", prefecture: "京都府", description: "設置されている望遠鏡を覗くと、三十三間堂本堂や知恩院山門などの国宝や、東寺、清水寺などの京都の有名な観光スポットを見ることができる。", img_path: "../../img/landmarks/landmark13.1.png" },
   { height: 173.0,  markpoint: -1,   name: "梅田スカイビル 空中庭園展望台", prefecture: "大阪府", description: "連結高層建築・梅田スカイビルの連結部にあり、40階の屋内展望台と360度展望台で構成される。晴れた日には淡路島までも一望できる。", img_path: "../../img/landmarks/landmark17.png" },
   { height: 242.0,  markpoint: 6,  name: "清水山", prefecture: "京都府", description: "あの清水寺が中腹にある。慣用句、「清水の舞台から飛び降りる」の清水はここのことであり、実際の高さは13m程である。", img_path: "../../img/landmarks/landmark24.2.png" },
-  { height: 300.0,   markpoint: -1,  name: "あべのハルカス", prefecture: "大阪府", description: "日本一の高さを誇るビル。 ビル内には「ハルカス300」という展望台が、58～60階に渡って広がっている。また吹き抜けの空中庭園も設置されている。", img_path: "../../img/landmarks/landmark6.png" },
+  { height: 300.0,   markpoint: -1,  name: "あべのハルカス", prefecture: "大阪府", description: "日本一の高さを誇るビル。 ビル内には「ハルカス300」という展望台が、58～60階に渡って広がっている。また吹き抜けの空中庭園も設置されている。", img_path: "../../img/landmarks/landmark30.png" },
 
 ]; export default initialLandmarks;
 
