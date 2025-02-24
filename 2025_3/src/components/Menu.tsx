@@ -48,10 +48,10 @@ function Menu() {
               />
               <button onClick={updateName}>更新</button>
             </li>
-            <li>Sand: {userData.sand}</li>
+            <li>Sand: {userData.sand}kg</li>
             <li>Elevation: {userData.elevation}m</li>
             <li>Money: {userData.money}</li>
-            <li>Tool Level: {userData.tool_level}</li>
+            <li>Tool Level: {userData.tool_level}yen</li>
             <button
               onClick={() => {
                 localStorage.removeItem('userData');
