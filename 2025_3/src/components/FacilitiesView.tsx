@@ -29,7 +29,7 @@ function FacilitiesView() {
           key={idx}
           className="facility-box"
           sx={{
-            left: `calc((100% - ${imageSize}px) * ${ratioLeft})`,
+            left: `calc(100% * ${ratioLeft})`,
             bottom: `calc(100% * ${ratioBottom})`,
             width: imageSize,
             height: imageSize,

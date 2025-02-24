@@ -5,7 +5,7 @@ import Status from "./Status";
 import TipPanel from "./TipPanel";
 import "../css_designs/Landscape.css";
 import HeightScale from "./HeightScale";
-import { useElevation, useLmHeights } from "../api/context/get_edit";
+import { useElevation, useLmHeights, useLmMarkpoints } from "../api/context/get_edit";
 import { useAddSand, useUnlockFacility } from "../api/game_functions";
 
 const MAX_ELEVATION = 100;
@@ -19,6 +19,7 @@ function Landscape({ statusValue }: { statusValue: number }) {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const [elevation, setElevation] = useState<number>(45.3);
   const unlockFacility = useUnlockFacility();
+  const markpoints = useLmMarkpoints();
 
   const handleButtonClick = () => {
     if (scale === null) return;
@@ -52,7 +53,9 @@ function Landscape({ statusValue }: { statusValue: number }) {
       }, 5000);
 
       // 施設をアンロック
-      unlockFacility(currentIndex + 1);
+      if (markpoints !== null && markpoints[currentIndex] !== -1) {
+        unlockFacility(markpoints[currentIndex]);
+      }
     }
   };
 
