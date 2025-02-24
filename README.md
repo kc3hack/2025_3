@@ -4,7 +4,8 @@
 
 育て天保山
 
-![プロダクト名](/2025_3/img/README/プロダクト名.png)
+<img width="478" alt="プロダクト名" src="https://github.com/user-attachments/assets/6daa2541-c0b4-4506-aec1-718d90a79233" />
+
 
 ## チーム名
 
@@ -40,7 +41,8 @@
 
 の5つに分けられます。
 
-![ゲーム画面](/2025_3/img/README/ゲーム画面.png)
+<img width="1470" alt="ゲーム画面" src="https://github.com/user-attachments/assets/f56aea3c-b3ed-4998-a2fc-97bc31f355c4" />
+
 
 ### 天保山
 
@@ -48,15 +50,18 @@
 
 ある程度標高が高くなると、画面上に黄色い線が出現します(下の画像)。
 
-![ランドマーク線](/2025_3/img/README/ランドマーク線.png)
+<img width="831" alt="ランドマーク線" src="https://github.com/user-attachments/assets/0558ddf2-0238-4506-96c0-6b9664995d25" />
+
 
 これは、関西のとあるランドマークの高さを示しています。この高さまで山を大きくすると、、、
 
-![Tips](/2025_3/img/README/Tips.png)
+<img width="570" alt="Tips" src="https://github.com/user-attachments/assets/7da58e57-585c-42c0-bb09-1b9e7c1a8ed1" />
+
 
 上の画像のように、そのランドマークのTipsが画面上に表示されます。ランドマークによっては、新たに施設を獲得することができます(下の画像)。
 
-![施設アンロック](/2025_3/img/README/施設アンロック.png)
+<img width="458" alt="施設アンロック" src="https://github.com/user-attachments/assets/f7e3afbe-1ed6-4bac-93f7-530d615c25e8" />
+
 
 ### 道具ウィンドウ
 
@@ -66,7 +71,8 @@
 
 画面左下の「施設」と書かれているウィンドウに、現在所有している施設のレベルが表示されます。アンロック済みの施設にマウスカーソルを合わせると、その施設のちょっとした説明文や収益効率などを見ることができます(下の画像)。
 
-![施設ポップアップ](/2025_3/img/README/施設ポップアップ.png)
+<img width="671" alt="施設ポップアップ" src="https://github.com/user-attachments/assets/09e78f55-2e30-41b6-9ce8-57ccede00edb" />
+
 
 十分なお金を所有している状態で、施設の項目をクリックすると、施設をレベルアップされることができます。施設の収益効率は、その施設のレベルが高いほど、また天保山の標高が高いほど大きくなっていきます。
 
@@ -74,7 +80,8 @@
 
 画面下部の「収益」と書かれたゲージに、現在施設から得られた収益のストック量が表示されています。マウスカーソルを合わせると、実際にどのくらいの収益がストックされているかを確認できます(下の画像)。
 
-![収益ストックゲージ](/2025_3/img/README/収益ストックゲージ.png)
+<img width="572" alt="収益ストックゲージ" src="https://github.com/user-attachments/assets/2372c0db-3f7f-4836-bd20-4a7f76831d91" />
+
 
 ストックには上限があり、定期的にゲージをクリックして回収する必要があります。ストック中のお金はレベルアップに使用できないので、欠かさず回収しましょう。
 
@@ -82,7 +89,8 @@
 
 画面右上のメニューボタンをクリックすると、詳細なパラメータ情報を閲覧できます(下の画像)。
 
-![メニュー](/2025_3/img/README/メニュー.png)
+<img width="286" alt="メニュー" src="https://github.com/user-attachments/assets/77f0e132-4978-49b7-a2b3-9f7f268e1af3" />
+
 
 Name: ユーザーネーム。自由に変更できる  
 Sand: 天保山の総重量  
