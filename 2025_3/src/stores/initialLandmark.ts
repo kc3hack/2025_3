@@ -15,7 +15,7 @@ const initialLandmarks: Landmark[] = [
   { height: 173.0,    markpoint: 6,    name: "梅田スカイビル 空中庭園展望台", prefecture: "大阪府", description: "連結高層建築・梅田スカイビルの連結部にあり、40階の屋内展望台と360度展望台で構成される。晴れた日には淡路島までも一望できる。", img_path: "../../img/landmarks/landmark17.png" },
   { height: 242.0,    markpoint: 7,     name: "清水山", prefecture: "京都府", description: "あの清水寺が中腹にある。慣用句、「清水の舞台から飛び降りる」の清水はここのことであり、実際の高さは13m程である。", img_path: "../../img/landmarks/landmark24.2.png" },
   { height: 300.0,    markpoint: 8,    name: "あべのハルカス", prefecture: "大阪府", description: "日本一の高さを誇るビル。 ビル内には「ハルカス300」という展望台が、58～60階に渡って広がっている。また吹き抜けの空中庭園も設置されている。", img_path: "../../img/landmarks/landmark30.png" },
-  { height: 474.0,    markpoint: 9,     name: "東山如意ヶ嶽", prefecture: "京都府", description: "5つの送り火の内最も大きい山。灯される送り火文字は「大」の字。最初に点火される字でもある。", img_path:  "../../img/landmarks/landmark47.44.png" },
+  { height: 474.0,    markpoint: 9,     name: "東山如意ヶ嶽", prefecture: "京都府", description: "5つの送り火の内最も大きい山。灯される送り火文字は「大」の字。最初に点火される字でもある。", img_path:  "../../img/landmarks/landmark47.4.png" },
   { height: 642.0,    markpoint: 10,    name: "生駒山", prefecture: "奈良県", description: "近鉄生駒駅に隣接する鳥居前から生駒山上まで約2kmをケーブル線で結んでいる近鉄生駒ケーブルがあり、景色を楽しみながら山頂に迎える。", img_path:  "../../img/landmarks/landmark64.2.png" },
   { height: 858.0,    markpoint: 11,    name: "和泉葛城山", prefecture: "和歌県", description: "大阪と和歌山の境目に横たわる山。古くから山頂の大阪側と和歌山側に背中合わせで八代竜王社が祀られている。", img_path:  "../../img/landmarks/landmark85.8.png" },
   { height: 931.0,    markpoint: 12,    name: "六甲山", prefecture: "兵庫県", description: "東西に約30㎞に渡って山が連なっている。展望台や牧場、植物園、アスレチックパーク等の自然のアクティビティが多くある。", img_path:  "../../img/landmarks/landmark93.1.png" },
