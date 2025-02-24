@@ -1,0 +1,9 @@
+{
+    "id": 0,
+    "name": "noName",
+    "sand": 93,
+    "elevation": 4.53,
+    "money": 0,
+    "facility": [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    "tool_level": 1
+}

@@ -1,0 +1,40 @@
+.game-page {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.facilities-window {
+  position: absolute;
+  left: 10px;
+  top: 48vh;
+  width: 350px;
+  height: 45vh;
+}
+
+.facilities-view {
+  position: absolute;
+  left: 69%;
+  transform: translateX(-50%);
+  width: 500px;
+  bottom: 40px;
+  height: 40px;
+}
+
+.Tools {
+  position: absolute;
+  left: 10px;
+  top: 27vh;
+  width: 350px;
+  height: 0vh;
+}
+.title{
+  position: absolute;
+ left: 50%;
+  top: 10px;
+  transform: translateX(0%);
+  font-size: 200%;
+  font-weight: 100;
+}
+
+

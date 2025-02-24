@@ -1,0 +1,68 @@
+.facilities-view-area {
+  width: 100%;
+  height: 100%;
+}
+
+.facilities-view-area .facility-box {
+  position: absolute;
+  pointer-events: none;
+}
+
+.facilities-view-area .facility-image {
+  translate: -50% 0;
+  /* width: 100%; */
+  height: 100%;
+  pointer-events: none;
+}
+
+.facilities-view-area .stock-bar-box {
+  --width: 400px;
+  --height: 30px;
+
+  position: absolute;
+  top: 100%;
+  left: calc(50% - var(--width) / 2);
+  width: var(--width);
+  height: var(--height);
+  border: 1px solid #2a3538;
+  border-radius: calc(var(--height) / 2);
+  backdrop-filter: blur(10px);
+  background-color: #ffffff50;
+  overflow: hidden;
+}
+
+.facilities-view-area .stock-bar-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+}
+
+.facilities-view-area .stock-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: #ffe330;
+  border-radius: 0;
+}
+
+.facilities-view-area .stock-bar-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 1.2em;
+  color: #000000;
+  transition: .2s;
+}
+
+.facilities-view-area .stock-bar-label:hover {
+  background-color: #00000020;
+  color: #eeeeee;
+  transition: .2s;
+}
+

@@ -1,0 +1,27 @@
+.button{
+    background-color: transparent;
+    border: 1px;
+    background-image: url(../../img/mountain_yama.png);
+    background-repeat: no-repeat;
+    background-size: 100% 155%;
+    background-position: center;
+    height:100%;
+    width: 100%;
+    transform: translate(0%,0%);
+}
+
+.button:focus {
+    outline: none; /* フォーカス時の枠線を無効にする */
+}
+
+.mountain-container{
+    display: flex;
+    justify-content: center;
+    background-color: transparent;
+    position: absolute;
+    left: 69%;
+    bottom: 100px;
+    transform: translateX(-60%);
+
+
+}

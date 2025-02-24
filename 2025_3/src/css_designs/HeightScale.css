@@ -1,0 +1,27 @@
+/* このコンテナが横線と文字の基準になります */
+.heightScaleContainer {
+  display: flex;
+  justify-content: center;
+  background-color: transparent;
+  position: absolute;
+  left: 69%;
+  bottom: 50px;
+  transform: translateX(-50%);
+}
+
+/* 横線のスタイル */
+.heightScale {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 4px;
+}
+
+/* 文字のスタイル。左端に固定 */
+.heightScaleText {
+  position: absolute;
+  text-align: right;
+  right: 10px;  /* 右端に配置 */
+  top: -20px; /* 横線より上に表示 */
+  font-size: 14px;
+}

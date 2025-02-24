@@ -1,0 +1,63 @@
+.facilities-box {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #2a3538;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  background-color: #ffffff50;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.facilities-box h1 {
+  text-align: center;
+  font-weight: 100;
+}
+
+.facilities-box .facilities-divider {
+  margin-bottom: 10px;
+  border: none;
+  border-top: 1px solid #2a3538;
+}
+
+.facilities-list {
+  scrollbar-color: #7a888e #ffffff00;
+  overflow-y: auto;
+}
+
+.facilities-list .facility-item {
+  padding: 2px 0;
+  font-size: 1.3em;
+}
+
+.facilities-list .facility-button {
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.facilities-list .facility-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.facilities-list .facility-avatar {
+  width: 70px;
+  height: 70px;
+  margin-right: 10px;
+  pointer-events: none;
+}
+
+.facilities-list .facility-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.facilities-list .facility-level {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 1.5em;
+}

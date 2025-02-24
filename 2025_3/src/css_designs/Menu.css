@@ -1,0 +1,24 @@
+.menu-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.user-data-window {
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    width: 200px;
+    height: auto;
+    background-color: #ffffffa8;
+    border: 3px solid #ccc;
+    border-radius: 5%;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.user-data-window li {
+    list-style: none;
+}
